@@ -24,6 +24,7 @@ func _toggle_pause() -> void:
 	var should_pause := not get_tree().paused
 	get_tree().paused = should_pause
 	overlay.visible = should_pause
+	_set_audio_paused(should_pause)
 
 	if should_pause:
 		continue_button.grab_focus()
@@ -33,4 +34,10 @@ func _toggle_pause() -> void:
 func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	overlay.visible = false
+	_set_audio_paused(false)
 	continue_button.release_focus()
+
+func _set_audio_paused(paused: bool) -> void:
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("set_game_paused", paused)

@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/audio_manager.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/music_desert_settlement.mp3" id="2_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/ambience/ambience_birds_wind.ogg" id="3_ambience"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_machete_swing_01.ogg" id="4_machete"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_impact_01.ogg" id="5_impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_enemy_death_01.ogg" id="6_enemy_death"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_water_splash_01.ogg" id="7_water"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_script")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_music")
+process_mode = 3
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ambience")
+process_mode = 3
+
+[node name="MachetePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_machete")
+volume_db = -1.4
+process_mode = 3
+
+[node name="ImpactPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_impact")
+volume_db = -1.9
+process_mode = 3
+
+[node name="EnemyDeathPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_enemy_death")
+volume_db = -1.9
+process_mode = 3
+
+[node name="WaterPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_water")
+volume_db = -1.9
+process_mode = 3

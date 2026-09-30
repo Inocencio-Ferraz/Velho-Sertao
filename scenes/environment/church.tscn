@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/environment/buildings/church.png" id="1_visual"]
 
 [sub_resource type="RectangleShape2D" id="Shape_top"]
 size = Vector2(110, 10)
@@ -11,32 +13,11 @@ size = Vector2(10, 70)
 
 [node name="Church" type="Node2D"]
 
-[node name="Roof" type="Polygon2D" parent="."]
-color = Color(0.46, 0.2, 0.15, 1)
-polygon = PackedVector2Array(-64, -40, 0, -58, 64, -40, 64, 36, -64, 36)
-
-[node name="WallsVisual" type="Polygon2D" parent="."]
-color = Color(0.76, 0.66, 0.48, 1)
-polygon = PackedVector2Array(-53, -34, 53, -34, 53, 35, -53, 35)
-
-[node name="FrontWall" type="Polygon2D" parent="."]
-color = Color(0.66, 0.53, 0.36, 1)
-polygon = PackedVector2Array(-53, 18, 53, 18, 53, 35, -53, 35)
-
-[node name="DoorPlaceholder" type="Polygon2D" parent="."]
-position = Vector2(0, 19)
-color = Color(0.28, 0.18, 0.13, 1)
-polygon = PackedVector2Array(-9, 0, 9, 0, 9, 16, -9, 16)
-
-[node name="CrossVertical" type="Polygon2D" parent="."]
-position = Vector2(0, -57)
-color = Color(0.91, 0.82, 0.56, 1)
-polygon = PackedVector2Array(-2, -10, 2, -10, 2, 10, -2, 10)
-
-[node name="CrossHorizontal" type="Polygon2D" parent="."]
-position = Vector2(0, -58)
-color = Color(0.91, 0.82, 0.56, 1)
-polygon = PackedVector2Array(-7, -2, 7, -2, 7, 2, -7, 2)
+[node name="VisualSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_visual")
+centered = true
+scale = Vector2(1, 1)
 
 [node name="Collision" type="StaticBody2D" parent="."]
 collision_layer = 1

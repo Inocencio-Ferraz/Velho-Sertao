@@ -27,6 +27,8 @@ signal defeated(enemy: Node)
 @onready var attack_visual: Polygon2D = $AttackArea/AttackVisual
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var visual: Polygon2D = $Visual
+@onready var melee_sprite := get_node_or_null("Visual/MeleeSprite") as Sprite2D
+@onready var gun_sprite := get_node_or_null("Visual/GunSprite") as Sprite2D
 @onready var direction_marker: Polygon2D = $DirectionMarker
 @onready var muzzle_flash := get_node_or_null("MuzzleFlash") as Polygon2D
 
@@ -42,7 +44,7 @@ var _attack_ready: bool = true
 var _attack_is_active: bool = false
 var _attack_has_hit: bool = false
 var _hit_tween: Tween
-var _base_visual_color: Color
+var _base_visual_modulate: Color
 var _ranged_ammo: int = 0
 var _ranged_shot_ready: bool = true
 var _ammo_reward_paid: bool = false
@@ -50,7 +52,11 @@ var _ammo_reward_paid: bool = false
 func _ready() -> void:
 	max_health = maxi(1, max_health)
 	health = max_health
-	_base_visual_color = visual.color
+	_base_visual_modulate = visual.modulate
+	if melee_sprite:
+		melee_sprite.visible = not has_pistol
+	if gun_sprite:
+		gun_sprite.visible = has_pistol
 	_ranged_ammo = maxi(0, starting_ammo) if has_pistol else 0
 
 	var detection_circle := detection_shape.shape as CircleShape2D
@@ -105,6 +111,8 @@ func take_damage(amount: int) -> void:
 
 	if health == 0:
 		_die()
+	else:
+		_play_audio("impact")
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	if is_dead or body == self or not body.has_method("take_damage"):
@@ -239,9 +247,9 @@ func _lose_target() -> void:
 func _show_hit_feedback() -> void:
 	if _hit_tween and _hit_tween.is_running():
 		_hit_tween.kill()
-	visual.color = Color(1.0, 0.88, 0.62, 1.0)
+	visual.modulate = Color(1.0, 0.88, 0.62, 1.0)
 	_hit_tween = create_tween()
-	_hit_tween.tween_property(visual, "color", _base_visual_color, 0.18)
+	_hit_tween.tween_property(visual, "modulate", _base_visual_modulate, 0.18)
 
 func _show_muzzle_flash(direction: Vector2) -> void:
 	if not is_instance_valid(muzzle_flash):
@@ -251,6 +259,11 @@ func _show_muzzle_flash(direction: Vector2) -> void:
 	muzzle_flash.visible = true
 	get_tree().create_timer(0.06).timeout.connect(_hide_muzzle_flash)
 
+func _play_audio(effect_name: String) -> void:
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("play_sfx", effect_name)
+
 func _hide_muzzle_flash() -> void:
 	if is_instance_valid(muzzle_flash):
 		muzzle_flash.visible = false
@@ -259,6 +272,7 @@ func _die() -> void:
 	is_dead = true
 	if _hit_tween and _hit_tween.is_running():
 		_hit_tween.kill()
+	_play_audio("enemy_death")
 	_award_ammo()
 	defeated.emit(self)
 	_state = State.DEAD

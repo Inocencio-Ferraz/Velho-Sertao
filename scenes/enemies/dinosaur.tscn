@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/enemies/cangaceiro.gd" id="1_enemy_script"]
 [ext_resource type="Script" path="res://scripts/enemies/cangaceiro_hurtbox.gd" id="2_hurtbox_script"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/dinosaur.png" id="3_dinosaur"]
 
 [sub_resource type="CircleShape2D" id="BodyShape"]
 radius = 13.0
@@ -26,13 +27,13 @@ attack_width = 42.0
 ammo_reward = 2
 
 [node name="Visual" type="Polygon2D" parent="."]
-scale = Vector2(1.28, 1.28)
-color = Color(0.34, 0.52, 0.25, 1)
+color = Color(0.34, 0.52, 0.25, 0)
 polygon = PackedVector2Array(-8, -13, -6, -19, 0, -23, 6, -19, 8, -13, 13, -7, 13, 6, 8, 12, 6, 19, 2, 15, 0, 10, -2, 15, -6, 19, -8, 12, -13, 6, -13, -7)
 
-[node name="Spines" type="Polygon2D" parent="Visual"]
-color = Color(0.76, 0.66, 0.34, 1)
-polygon = PackedVector2Array(-2, -9, 0, -13, 2, -9, 2, 2, 0, 6, -2, 2)
+[node name="DinosaurSprite" type="Sprite2D" parent="Visual"]
+texture = ExtResource("3_dinosaur")
+texture_filter = 1
+centered = true
 
 [node name="DirectionMarker" type="Polygon2D" parent="."]
 position = Vector2(-15, 0)

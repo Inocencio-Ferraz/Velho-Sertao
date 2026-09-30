@@ -52,6 +52,7 @@ func take_damage(amount: int) -> void:
 	health = maxi(0, health - amount)
 	health_changed.emit(health, max_health)
 	_show_damage_feedback()
+	_play_audio("impact")
 
 	if health == 0:
 		is_dead = true
@@ -69,6 +70,11 @@ func add_ammo(amount: int) -> void:
 	if is_dead or amount <= 0:
 		return
 	pistol.call("add_ammo", amount)
+
+func _play_audio(effect_name: String) -> void:
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("play_sfx", effect_name)
 
 # TESTE: ações temporárias para validar vida, sem implementar combate.
 func _unhandled_input(event: InputEvent) -> void:

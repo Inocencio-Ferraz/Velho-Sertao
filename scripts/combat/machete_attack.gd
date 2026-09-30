@@ -45,6 +45,7 @@ func _try_attack() -> void:
 	can_attack = false
 	attack_is_active = true
 	hit_targets.clear()
+	_play_audio("machete")
 	attack_visual.scale = Vector2(0.88, 0.88)
 	attack_visual.visible = true
 	hit_shape.set_deferred("disabled", false)
@@ -83,6 +84,11 @@ func _damage_target(target: Area2D) -> void:
 
 func _on_cooldown_finished() -> void:
 	can_attack = true
+
+func _play_audio(effect_name: String) -> void:
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("play_sfx", effect_name)
 
 func _update_position() -> void:
 	position = facing_direction * (player_radius + attack_length / 2.0)

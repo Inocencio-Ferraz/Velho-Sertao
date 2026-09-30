@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/environment/well.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/buildings/well.png" id="2_visual"]
 
 [sub_resource type="CircleShape2D" id="WellBodyShape"]
 radius = 25.0
@@ -21,12 +22,18 @@ dialogue_speaker = "Poço"
 dialogue_lines = PackedStringArray("Está seco...", "Melhor ver o segundo poço.")
 
 [node name="StoneRing" type="Polygon2D" parent="."]
-color = Color(0.62, 0.55, 0.39, 1)
+color = Color(0.62, 0.55, 0.39, 0)
 polygon = PackedVector2Array(0, -26, 14, -22, 23, -12, 26, 0, 23, 12, 14, 22, 0, 26, -14, 22, -23, 12, -26, 0, -23, -12, -14, -22)
+
+[node name="WellSprite" type="Sprite2D" parent="StoneRing"]
+texture_filter = 1
+texture = ExtResource("2_visual")
+centered = true
+scale = Vector2(1, 1)
 
 [node name="DryCenter" type="Polygon2D" parent="."]
 color = Color(0.11, 0.1, 0.08, 1)
-polygon = PackedVector2Array(0, -17, 10, -14, 16, -8, 18, 0, 16, 8, 10, 14, 0, 17, -10, 14, -16, 8, -18, 0, -16, -8, -10, -14)
+polygon = PackedVector2Array(0, -12, 7, -10, 11, -6, 13, 0, 11, 6, 7, 10, 0, 11, -7, 9, -11, 5, -13, 0, -11, -6, -7, -10)
 
 [node name="WaterShine" type="Polygon2D" parent="."]
 position = Vector2(0, 4)
@@ -37,6 +44,7 @@ visible = false
 [node name="StoneHighlight" type="Polygon2D" parent="."]
 color = Color(0.79, 0.71, 0.52, 1)
 polygon = PackedVector2Array(-19, -15, -8, -23, 1, -25, 0, -21, -8, -19)
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("WellBodyShape")

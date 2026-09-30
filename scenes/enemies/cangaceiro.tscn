@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/enemies/cangaceiro.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/enemies/cangaceiro_hurtbox.gd" id="2_hurtbox"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/cangaceiro_melee.png" id="3_melee"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/cangaceiro_gun.png" id="4_gun"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 10.0
@@ -19,8 +21,19 @@ motion_mode = 1
 script = ExtResource("1_script")
 
 [node name="Visual" type="Polygon2D" parent="."]
-color = Color(0.55, 0.2, 0.16, 1)
+color = Color(0.55, 0.2, 0.16, 0)
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="MeleeSprite" type="Sprite2D" parent="Visual"]
+texture = ExtResource("3_melee")
+texture_filter = 1
+centered = true
+
+[node name="GunSprite" type="Sprite2D" parent="Visual"]
+visible = false
+texture = ExtResource("4_gun")
+texture_filter = 1
+centered = true
 
 [node name="DirectionMarker" type="Polygon2D" parent="."]
 position = Vector2(-15, 0)

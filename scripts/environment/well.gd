@@ -56,6 +56,8 @@ func interact(player: Node2D) -> void:
 	_completed = true
 	_update_prompt()
 	_play_examine_feedback()
+	if starts_dream_ending:
+		_play_audio("water")
 	story_progress.call(progress_completion_method)
 	_ending_sequence_started = starts_dream_ending
 	dialogue_box.call("start_dialogue", dialogue_speaker, dialogue_lines)
@@ -136,3 +138,8 @@ func _play_examine_feedback() -> void:
 		water_tween.tween_property(water_visual, "scale", Vector2(0.9, 0.9), 0.24)
 	else:
 		dry_visual.color = Color(0.2, 0.16, 0.12, 1.0)
+
+func _play_audio(effect_name: String) -> void:
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("play_sfx", effect_name)

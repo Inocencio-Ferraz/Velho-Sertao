@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3]
+[gd_scene load_steps=41 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/bush_dry_medium.png" id="32_bush_dry_medium"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_small.png" id="33_tree_dry_small"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_medium.png" id="34_tree_dry_medium"]
+[ext_resource type="PackedScene" path="res://scenes/audio/audio_manager.tscn" id="35_audio_manager"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
 size = Vector2(960, 24)
@@ -47,6 +48,8 @@ size = Vector2(72, 36)
 size = Vector2(36, 52)
 
 [node name="Main" type="Node2D"]
+
+[node name="AudioManager" parent="." instance=ExtResource("35_audio_manager")]
 
 [node name="StoryProgress" type="Node" parent="."]
 script = ExtResource("12_story_progress")

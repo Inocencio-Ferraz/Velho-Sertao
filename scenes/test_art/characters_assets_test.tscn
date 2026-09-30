@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/characters/joao_grilo.png" id="1_joao"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/priest.png" id="2_priest"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/cangaceiro_melee.png" id="3_melee"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/cangaceiro_gun.png" id="4_gun"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/dinosaur.png" id="5_dinosaur"]
+
+[node name="CharactersAssetsTest" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.50, 0.44, 0.36, 1)
+polygon = PackedVector2Array(0, 0, 640, 0, 640, 360, 0, 360)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 628.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "PERSONAGENS — pixel art em escala 1:1"
+horizontal_alignment = 1
+
+[node name="JoaoGrilo" type="Sprite2D" parent="."]
+position = Vector2(64, 142)
+texture_filter = 1
+texture = ExtResource("1_joao")
+centered = true
+scale = Vector2(1, 1)
+
+[node name="JoaoLabel" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 194.0
+offset_right = 124.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "João Grilo"
+horizontal_alignment = 1
+
+[node name="Priest" type="Sprite2D" parent="."]
+position = Vector2(192, 142)
+texture_filter = 1
+texture = ExtResource("2_priest")
+centered = true
+scale = Vector2(1, 1)
+
+[node name="PriestLabel" type="Label" parent="."]
+offset_left = 132.0
+offset_top = 194.0
+offset_right = 252.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Padre"
+horizontal_alignment = 1
+
+[node name="CangaceiroMelee" type="Sprite2D" parent="."]
+position = Vector2(320, 142)
+texture_filter = 1
+texture = ExtResource("3_melee")
+centered = true
+scale = Vector2(1, 1)
+
+[node name="CangaceiroMeleeLabel" type="Label" parent="."]
+offset_left = 260.0
+offset_top = 194.0
+offset_right = 380.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Cangaceiro (facão)"
+horizontal_alignment = 1
+
+[node name="CangaceiroGun" type="Sprite2D" parent="."]
+position = Vector2(448, 142)
+texture_filter = 1
+texture = ExtResource("4_gun")
+centered = true
+scale = Vector2(1, 1)
+
+[node name="CangaceiroGunLabel" type="Label" parent="."]
+offset_left = 388.0
+offset_top = 194.0
+offset_right = 508.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Cangaceiro armado"
+horizontal_alignment = 1
+
+[node name="Dinosaur" type="Sprite2D" parent="."]
+position = Vector2(576, 142)
+texture_filter = 1
+texture = ExtResource("5_dinosaur")
+centered = true
+scale = Vector2(1, 1)
+
+[node name="DinosaurLabel" type="Label" parent="."]
+offset_left = 516.0
+offset_top = 194.0
+offset_right = 636.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Dinossauro"
+horizontal_alignment = 1
+
+[node name="ScaleMarker" type="Polygon2D" parent="."]
+position = Vector2(300, 285)
+color = Color(0.24, 0.72, 0.82, 1)
+polygon = PackedVector2Array(-8, -10, 8, -10, 10, -6, 10, 6, 6, 10, -6, 10, -10, 6, -10, -6)
+
+[node name="ScaleMarkerLabel" type="Label" parent="."]
+offset_left = 320.0
+offset_top = 274.0
+offset_right = 615.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "Referência atual de João: 20 × 20 unidades"
+vertical_alignment = 1
