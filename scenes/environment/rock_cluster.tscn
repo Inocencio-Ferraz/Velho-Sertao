@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rock"]
+radius = 18.0
+
+[node name="RockCluster" type="StaticBody2D"]
+
+[node name="MainRock" type="Polygon2D" parent="."]
+color = Color(0.38, 0.35, 0.3, 1)
+polygon = PackedVector2Array(-20, -7, -13, -18, 1, -21, 16, -13, 21, -1, 14, 12, -7, 16, -19, 7)
+
+[node name="SmallRock" type="Polygon2D" parent="."]
+position = Vector2(17, 10)
+color = Color(0.46, 0.41, 0.34, 1)
+polygon = PackedVector2Array(-9, -2, -5, -9, 4, -10, 10, -3, 7, 5, -4, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rock")

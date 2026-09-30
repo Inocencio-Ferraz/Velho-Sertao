@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const BULLET_SCENE: PackedScene = preload("res://scenes/combat/cangaceiro_bullet.tscn")
+
 signal defeated(enemy: Node)
 
 @export var speed: float = 80.0
@@ -11,6 +13,11 @@ signal defeated(enemy: Node)
 @export var attack_length: float = 42.0
 @export var attack_width: float = 40.0
 @export var attack_active_duration: float = 0.12
+@export var ammo_reward: int = 0
+@export var has_pistol: bool = false
+@export var starting_ammo: int = 0
+@export var ranged_attack_range: float = 180.0
+@export var ranged_attack_cooldown: float = 3.0
 
 @onready var body_shape: CollisionShape2D = $CollisionShape2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -34,10 +41,14 @@ var _attack_ready: bool = true
 var _attack_is_active: bool = false
 var _attack_has_hit: bool = false
 var _hit_tween: Tween
+var _ranged_ammo: int = 0
+var _ranged_shot_ready: bool = true
+var _ammo_reward_paid: bool = false
 
 func _ready() -> void:
 	max_health = maxi(1, max_health)
 	health = max_health
+	_ranged_ammo = maxi(0, starting_ammo) if has_pistol else 0
 
 	var detection_circle := detection_shape.shape as CircleShape2D
 	detection_circle.radius = detection_range
@@ -118,6 +129,11 @@ func _update_chase() -> void:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
+	if has_pistol and _ranged_ammo > 0 and distance_to_player <= ranged_attack_range:
+		_state = State.ATTACK
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	velocity = offset_to_player.normalized() * speed
 	move_and_slide()
@@ -132,16 +148,38 @@ func _update_attack() -> void:
 	# A DetectionArea controla a saída do alcance; não compare somente os centros,
 	# pois o collider do Player também participa da detecção.
 	_face_player(offset_to_player)
-	if distance_to_player > attack_distance:
-		_state = State.CHASE
-		velocity = offset_to_player.normalized() * speed
-		move_and_slide()
-		return
-
 	velocity = Vector2.ZERO
 	move_and_slide()
-	if _attack_ready and not _attack_is_active:
-		_perform_attack()
+	if distance_to_player <= attack_distance:
+		if _attack_ready and not _attack_is_active:
+			_perform_attack()
+		return
+	if has_pistol and _ranged_ammo > 0 and distance_to_player <= ranged_attack_range:
+		if _ranged_shot_ready:
+			_fire_ranged_shot()
+		return
+
+	_state = State.CHASE
+	velocity = offset_to_player.normalized() * speed
+	move_and_slide()
+
+func _fire_ranged_shot() -> void:
+	if not has_pistol or _ranged_ammo <= 0 or not _ranged_shot_ready or not is_instance_valid(_target_player):
+		return
+
+	_ranged_shot_ready = false
+	_ranged_ammo -= 1
+	var shot_direction := (_target_player.global_position - global_position).normalized()
+	var bullet := BULLET_SCENE.instantiate() as CharacterBody2D
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = global_position + shot_direction * 13.0
+	bullet.call("launch", shot_direction, 1, 1, 500.0)
+
+	var cooldown := maxf(3.0, ranged_attack_cooldown)
+	get_tree().create_timer(cooldown).timeout.connect(_on_ranged_cooldown_finished)
+
+func _on_ranged_cooldown_finished() -> void:
+	_ranged_shot_ready = true
 
 func _perform_attack() -> void:
 	_attack_ready = false
@@ -203,6 +241,7 @@ func _show_hit_feedback() -> void:
 
 func _die() -> void:
 	is_dead = true
+	_award_ammo()
 	defeated.emit(self)
 	_state = State.DEAD
 	velocity = Vector2.ZERO
@@ -217,3 +256,11 @@ func _die() -> void:
 	print("Cangaceiro derrotado.")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()
+
+func _award_ammo() -> void:
+	if _ammo_reward_paid or ammo_reward <= 0:
+		return
+	_ammo_reward_paid = true
+	var player := get_tree().get_first_node_in_group("player")
+	if player and player.has_method("add_ammo"):
+		player.call("add_ammo", ammo_reward)

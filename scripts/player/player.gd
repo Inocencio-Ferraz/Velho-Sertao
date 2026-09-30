@@ -42,7 +42,6 @@ func set_controls_locked(locked: bool) -> void:
 	if locked:
 		velocity = Vector2.ZERO
 		melee_attack.call("cancel_active_attack")
-		pistol.call("hide_shot_flash")
 
 func take_damage(amount: int) -> void:
 	if is_dead or amount <= 0:
@@ -62,6 +61,11 @@ func heal(amount: int) -> void:
 
 	health = mini(max_health, health + amount)
 	health_changed.emit(health, max_health)
+
+func add_ammo(amount: int) -> void:
+	if is_dead or amount <= 0:
+		return
+	pistol.call("add_ammo", amount)
 
 # TESTE: ações temporárias para validar vida, sem implementar combate.
 func _unhandled_input(event: InputEvent) -> void:

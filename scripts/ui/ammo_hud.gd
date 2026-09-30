@@ -7,7 +7,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	pistol.connect("ammo_changed", Callable(self, "_on_ammo_changed"))
-	_on_ammo_changed(int(pistol.get("ammo")), int(pistol.get("max_ammo")))
+	_on_ammo_changed(int(pistol.get("ammo")))
 
-func _on_ammo_changed(current_ammo: int, _maximum_ammo: int) -> void:
+func _on_ammo_changed(current_ammo: int) -> void:
 	ammo_label.text = "BALAS: %d" % current_ammo

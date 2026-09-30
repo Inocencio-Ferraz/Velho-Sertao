@@ -14,6 +14,11 @@ collision_mask = 1
 script = ExtResource("1_script")
 dialogue_box_path = NodePath("../DialogueBox")
 story_progress_path = NodePath("../StoryProgress")
+enemy_group = "first_well_enemy"
+progress_encounter_method = "begin_first_well_encounter"
+progress_completion_method = "complete_first_well"
+dialogue_speaker = "Poço"
+dialogue_lines = PackedStringArray("Está seco...", "Melhor ver o segundo poço.")
 
 [node name="StoneRing" type="Polygon2D" parent="."]
 color = Color(0.62, 0.55, 0.39, 1)

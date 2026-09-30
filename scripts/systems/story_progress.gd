@@ -6,7 +6,9 @@ enum State {
 	INTRO,
 	PADRE_CONVERSOU,
 	PRIMEIRO_POCO,
-	PRIMEIRO_POCO_SECO
+	PRIMEIRO_POCO_SECO,
+	SEGUNDO_POCO,
+	SEGUNDO_POCO_SECO
 }
 
 var current_state: State = State.INTRO
@@ -19,6 +21,12 @@ func begin_first_well_encounter() -> void:
 
 func complete_first_well() -> void:
 	_advance_to(State.PRIMEIRO_POCO_SECO)
+
+func begin_second_well_encounter() -> void:
+	_advance_to(State.SEGUNDO_POCO)
+
+func complete_second_well() -> void:
+	_advance_to(State.SEGUNDO_POCO_SECO)
 
 func _advance_to(next_state: State) -> void:
 	if next_state <= current_state:
