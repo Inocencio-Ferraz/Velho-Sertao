@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3]
+[gd_scene load_steps=40 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -26,6 +26,14 @@
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/dry_grass_01.png" id="24_dry_grass"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/details/dry_branch_01.png" id="25_dry_branch"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/details/dry_leaves_01.png" id="26_dry_leaves"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/cactus_mandacaru_small.png" id="27_mandacaru"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/cactus_xique_xique.png" id="28_xique_xique"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/cactus_facheiro.png" id="29_facheiro"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/cactus_coroa_de_frade.png" id="30_coroa_de_frade"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/bush_dry_small.png" id="31_bush_dry_small"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/bush_dry_medium.png" id="32_bush_dry_medium"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_small.png" id="33_tree_dry_small"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_medium.png" id="34_tree_dry_medium"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
 size = Vector2(960, 24)
@@ -144,6 +152,102 @@ texture = ExtResource("26_dry_leaves")
 position = Vector2(680, 2360)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("26_dry_leaves")
+
+[node name="Mandacaru01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(210, 680)
+texture = ExtResource("27_mandacaru")
+
+[node name="Mandacaru02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(330, 1450)
+texture = ExtResource("27_mandacaru")
+
+[node name="Mandacaru03" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(625, 2140)
+texture = ExtResource("27_mandacaru")
+
+[node name="Mandacaru04" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(625, 1400)
+texture = ExtResource("27_mandacaru")
+
+[node name="XiqueXique01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(790, 730)
+texture = ExtResource("28_xique_xique")
+
+[node name="XiqueXique02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 1390)
+texture = ExtResource("28_xique_xique")
+
+[node name="XiqueXique03" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 2160)
+texture = ExtResource("28_xique_xique")
+
+[node name="Facheiro01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(330, 1515)
+texture = ExtResource("29_facheiro")
+
+[node name="Facheiro02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(625, 2030)
+texture = ExtResource("29_facheiro")
+
+[node name="CoroaDeFrade01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(235, 700)
+texture = ExtResource("30_coroa_de_frade")
+
+[node name="CoroaDeFrade02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 1480)
+texture = ExtResource("30_coroa_de_frade")
+
+[node name="CoroaDeFrade03" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 2050)
+texture = ExtResource("30_coroa_de_frade")
+
+[node name="CoroaDeFrade04" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 2180)
+texture = ExtResource("30_coroa_de_frade")
+
+[node name="CoroaDeFrade05" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 2040)
+texture = ExtResource("30_coroa_de_frade")
+
+[node name="DryBushSmall09" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 1340)
+texture = ExtResource("31_bush_dry_small")
+
+[node name="DryBushSmall10" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 2060)
+texture = ExtResource("31_bush_dry_small")
+
+[node name="DryBushSmall12" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 2120)
+texture = ExtResource("31_bush_dry_small")
+
+[node name="DryBushMedium01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(330, 1340)
+texture = ExtResource("32_bush_dry_medium")
+
+[node name="DryBushMedium02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 2240)
+texture = ExtResource("32_bush_dry_medium")
+
+[node name="DryTreeSmall01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(175, 640)
+texture = ExtResource("33_tree_dry_small")
+
+[node name="DryTreeSmall02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(625, 1450)
+texture = ExtResource("33_tree_dry_small")
+
+[node name="DryTreeSmall03" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 2120)
+texture = ExtResource("33_tree_dry_small")
+
+[node name="DryTreeMedium01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(200, 1510)
+texture = ExtResource("34_tree_dry_medium")
+
+[node name="DryTreeMedium02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(800, 1980)
+texture = ExtResource("34_tree_dry_medium")
 
 [node name="CasaJoaoGrilo" parent="." instance=ExtResource("18_joao_house")]
 position = Vector2(300, 460)
