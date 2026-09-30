@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="RectangleShape2D" id="Shape_top"]
+size = Vector2(110, 10)
+[sub_resource type="RectangleShape2D" id="Shape_bottom"]
+size = Vector2(110, 10)
+[sub_resource type="RectangleShape2D" id="Shape_left"]
+size = Vector2(10, 70)
+[sub_resource type="RectangleShape2D" id="Shape_right"]
+size = Vector2(10, 70)
+
+[node name="Church" type="Node2D"]
+
+[node name="Roof" type="Polygon2D" parent="."]
+color = Color(0.46, 0.2, 0.15, 1)
+polygon = PackedVector2Array(-64, -40, 0, -58, 64, -40, 64, 36, -64, 36)
+
+[node name="WallsVisual" type="Polygon2D" parent="."]
+color = Color(0.76, 0.66, 0.48, 1)
+polygon = PackedVector2Array(-53, -34, 53, -34, 53, 35, -53, 35)
+
+[node name="FrontWall" type="Polygon2D" parent="."]
+color = Color(0.66, 0.53, 0.36, 1)
+polygon = PackedVector2Array(-53, 18, 53, 18, 53, 35, -53, 35)
+
+[node name="DoorPlaceholder" type="Polygon2D" parent="."]
+position = Vector2(0, 19)
+color = Color(0.28, 0.18, 0.13, 1)
+polygon = PackedVector2Array(-9, 0, 9, 0, 9, 16, -9, 16)
+
+[node name="CrossVertical" type="Polygon2D" parent="."]
+position = Vector2(0, -57)
+color = Color(0.91, 0.82, 0.56, 1)
+polygon = PackedVector2Array(-2, -10, 2, -10, 2, 10, -2, 10)
+
+[node name="CrossHorizontal" type="Polygon2D" parent="."]
+position = Vector2(0, -58)
+color = Color(0.91, 0.82, 0.56, 1)
+polygon = PackedVector2Array(-7, -2, 7, -2, 7, 2, -7, 2)
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 1
+
+[node name="TopWall" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, -35)
+shape = SubResource("Shape_top")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, 35)
+shape = SubResource("Shape_bottom")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-55, 0)
+shape = SubResource("Shape_left")
+
+[node name="RightWall" type="CollisionShape2D" parent="Collision"]
+position = Vector2(55, 0)
+shape = SubResource("Shape_right")

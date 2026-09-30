@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/interaction_prompt.gd" id="1_script"]
+
+[node name="InteractionPrompt" type="CanvasLayer" groups=["interaction_prompt"]]
+layer = 4
+script = ExtResource("1_script")
+
+[node name="PromptPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 316.0
+offset_right = 112.0
+offset_bottom = 348.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PromptPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 4
+
+[node name="PromptLabel" type="Label" parent="PromptPanel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "[E] Interagir"
+horizontal_alignment = 1

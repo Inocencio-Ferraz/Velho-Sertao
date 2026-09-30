@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/cactus.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 24.0
+
+[node name="Cactus" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Trunk" type="Polygon2D" parent="Visual"]
+color = Color(0.2, 0.52, 0.24, 1)
+polygon = PackedVector2Array(-5, -20, 5, -20, 5, 7, 9, 12, -9, 12, -5, 7)
+
+[node name="LeftArm" type="Polygon2D" parent="Visual"]
+color = Color(0.24, 0.58, 0.27, 1)
+polygon = PackedVector2Array(-5, -5, -10, -5, -10, -12, -14, -12, -14, 0, -5, 0)
+
+[node name="RightArm" type="Polygon2D" parent="Visual"]
+color = Color(0.24, 0.58, 0.27, 1)
+polygon = PackedVector2Array(5, 1, 10, 1, 10, -7, 14, -7, 14, 6, 5, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_interaction")

@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/cangaceiro.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/enemies/cangaceiro_hurtbox.gd" id="2_hurtbox"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 200.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(40, 42)
+
+[node name="Cangaceiro" type="CharacterBody2D" groups=["dialogue_interruptible"]]
+collision_layer = 4
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_script")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.55, 0.2, 0.16, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="DirectionMarker" type="Polygon2D" parent="."]
+position = Vector2(-15, 0)
+color = Color(0.96, 0.82, 0.48, 1)
+polygon = PackedVector2Array(-2, -4, 6, 0, -2, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_attack")
+disabled = true
+
+[node name="AttackVisual" type="Polygon2D" parent="AttackArea"]
+color = Color(1, 0.25, 0.16, 0.5)
+polygon = PackedVector2Array(-20, -21, 20, -21, 20, 21, -20, 21)
+visible = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_hurtbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_body")
