@@ -5,6 +5,7 @@ extends StaticBody2D
 
 @onready var dialogue_box: Node = get_node(dialogue_box_path)
 @onready var story_progress: Node = get_node(story_progress_path)
+@onready var attention_mark: Label = $AttentionMark
 
 var _player_in_range: CharacterBody2D
 
@@ -12,6 +13,9 @@ func _ready() -> void:
 	$InteractionArea.body_entered.connect(_on_body_entered)
 	$InteractionArea.body_exited.connect(_on_body_exited)
 	dialogue_box.connect("dialogue_completed", _on_dialogue_completed)
+	var float_tween := create_tween().set_loops()
+	float_tween.tween_property(attention_mark, "position:y", -50.0, 0.55).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	float_tween.tween_property(attention_mark, "position:y", -46.0, 0.55).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func interact(player: Node2D) -> void:
 	if not is_instance_valid(_player_in_range) or player != _player_in_range:

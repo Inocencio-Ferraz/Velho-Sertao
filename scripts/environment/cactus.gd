@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var visual: Node2D = $Visual
+@onready var heal_mark: Label = $HealMark
 
 var _player_in_range: CharacterBody2D
 var _used: bool = false
@@ -8,6 +9,9 @@ var _used: bool = false
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	var float_tween := create_tween().set_loops()
+	float_tween.tween_property(heal_mark, "position:y", -49.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	float_tween.tween_property(heal_mark, "position:y", -46.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func interact(player: Node2D) -> void:
 	if _used or not is_instance_valid(_player_in_range) or player != _player_in_range:
@@ -28,6 +32,7 @@ func interact(player: Node2D) -> void:
 	monitoring = false
 	monitorable = false
 	visual.visible = false
+	heal_mark.visible = false
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:

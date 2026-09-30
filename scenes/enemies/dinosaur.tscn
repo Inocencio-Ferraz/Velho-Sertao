@@ -26,6 +26,7 @@ attack_width = 42.0
 ammo_reward = 2
 
 [node name="Visual" type="Polygon2D" parent="."]
+scale = Vector2(1.28, 1.28)
 color = Color(0.34, 0.52, 0.25, 1)
 polygon = PackedVector2Array(-8, -13, -6, -19, 0, -23, 6, -19, 8, -13, 13, -7, 13, 6, 8, 12, 6, 19, 2, 15, 0, 10, -2, 15, -6, 19, -8, 12, -13, 6, -13, -7)
 

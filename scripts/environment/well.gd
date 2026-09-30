@@ -29,6 +29,9 @@ var _completed: bool = false
 var _ending_sequence_started: bool = false
 
 func _ready() -> void:
+	if starts_dream_ending:
+		water_visual.visible = true
+
 	$InteractionArea.body_entered.connect(_on_body_entered)
 	$InteractionArea.body_exited.connect(_on_body_exited)
 	dialogue_box.connect("dialogue_completed", _on_dialogue_completed)
@@ -127,7 +130,6 @@ func _play_examine_feedback() -> void:
 
 	if starts_dream_ending:
 		dry_visual.color = Color(0.17, 0.37, 0.4, 1.0)
-		water_visual.visible = true
 		water_visual.scale = Vector2(0.82, 0.82)
 		var water_tween := create_tween().set_loops(4)
 		water_tween.tween_property(water_visual, "scale", Vector2(1.08, 1.08), 0.24)

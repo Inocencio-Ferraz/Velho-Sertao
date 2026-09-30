@@ -23,6 +23,18 @@ polygon = PackedVector2Array(-9, -3, 9, -3, 12, 13, -12, 13)
 color = Color(0.78, 0.59, 0.4, 1)
 polygon = PackedVector2Array(-5, -12, 5, -12, 6, -5, 3, -2, -3, -2, -6, -5)
 
+[node name="AttentionMark" type="Label" parent="."]
+position = Vector2(-9, -46)
+custom_minimum_size = Vector2(18, 26)
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.83, 0.35, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.1, 0.05, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 23
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_priest")
 
