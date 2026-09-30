@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=32 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -20,6 +20,12 @@
 [ext_resource type="PackedScene" path="res://scenes/environment/joao_house.tscn" id="18_joao_house"]
 [ext_resource type="PackedScene" path="res://scenes/environment/village_house.tscn" id="19_village_house"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/dinosaur.tscn" id="20_dinosaur"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/rocks/rock_small.png" id="21_rock_small"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/rocks/rock_medium.png" id="22_rock_medium"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/rocks/rock_cluster.png" id="23_rock_cluster"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/dry_grass_01.png" id="24_dry_grass"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/details/dry_branch_01.png" id="25_dry_branch"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/details/dry_leaves_01.png" id="26_dry_leaves"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
 size = Vector2(960, 24)
@@ -56,6 +62,88 @@ polygon = PackedVector2Array(240, 485, 285, 455, 335, 440, 385, 438, 430, 450, 4
 [node name="SandyTrailFinal" type="Polygon2D" parent="."]
 color = Color(0.56, 0.44, 0.29, 1)
 polygon = PackedVector2Array(410, 1870, 390, 1950, 420, 2030, 390, 2110, 425, 2190, 395, 2270, 430, 2350, 405, 2430, 430, 2510, 555, 2510, 535, 2430, 560, 2350, 535, 2270, 565, 2190, 535, 2110, 565, 2030, 535, 1950, 555, 1870)
+
+[node name="EnvironmentDecoration" type="Node2D" parent="."]
+
+[node name="RockSmall01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(680, 1570)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockSmall02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(300, 1680)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockSmall03" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(300, 1970)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockSmall04" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(700, 2100)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockSmall05" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(280, 2285)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockSmall06" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(690, 2425)
+scale = Vector2(0.043, 0.043)
+texture = ExtResource("21_rock_small")
+
+[node name="RockMedium01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(690, 1690)
+scale = Vector2(0.026, 0.026)
+texture = ExtResource("22_rock_medium")
+
+[node name="RockMedium02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(695, 1955)
+scale = Vector2(0.026, 0.026)
+texture = ExtResource("22_rock_medium")
+
+[node name="RockCluster01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(300, 1575)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("23_rock_cluster")
+
+[node name="RockCluster02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(300, 2090)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("23_rock_cluster")
+
+[node name="DryGrass01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(320, 1690)
+scale = Vector2(0.023, 0.023)
+texture = ExtResource("24_dry_grass")
+
+[node name="DryGrass02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(680, 2200)
+scale = Vector2(0.023, 0.023)
+texture = ExtResource("24_dry_grass")
+
+[node name="DryBranch01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(300, 1640)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("25_dry_branch")
+
+[node name="DryBranch02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(320, 2160)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("25_dry_branch")
+
+[node name="DryLeaves01" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(720, 1625)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("26_dry_leaves")
+
+[node name="DryLeaves02" type="Sprite2D" parent="EnvironmentDecoration"]
+position = Vector2(680, 2360)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("26_dry_leaves")
 
 [node name="CasaJoaoGrilo" parent="." instance=ExtResource("18_joao_house")]
 position = Vector2(300, 460)
