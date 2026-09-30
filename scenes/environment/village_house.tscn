@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="RectangleShape2D" id="HouseFootprint"]
+size = Vector2(130, 106)
+
+[node name="CasaDecorativa" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 1
+
+[node name="Interior" type="Polygon2D" parent="."]
+color = Color(0.62, 0.48, 0.32, 1)
+polygon = PackedVector2Array(-58, -46, 58, -46, 58, 46, -58, 46)
+
+[node name="Walls" type="Polygon2D" parent="."]
+color = Color(0.72, 0.59, 0.4, 1)
+polygon = PackedVector2Array(-65, -53, 65, -53, 65, 53, -65, 53)
+
+[node name="Front" type="Polygon2D" parent="."]
+color = Color(0.78, 0.65, 0.45, 1)
+polygon = PackedVector2Array(-58, 32, 58, 32, 58, 53, -58, 53)
+
+[node name="RoofBack" type="Polygon2D" parent="."]
+color = Color(0.42, 0.22, 0.16, 1)
+polygon = PackedVector2Array(-73, -64, 0, -82, 73, -64, 63, -43, -63, -43)
+
+[node name="RoofLeft" type="Polygon2D" parent="."]
+color = Color(0.48, 0.25, 0.17, 1)
+polygon = PackedVector2Array(-73, -64, -63, -43, -63, 44, -73, 56)
+
+[node name="RoofRight" type="Polygon2D" parent="."]
+color = Color(0.48, 0.25, 0.17, 1)
+polygon = PackedVector2Array(63, -43, 73, -64, 73, 56, 63, 44)
+
+[node name="Door" type="Polygon2D" parent="."]
+position = Vector2(0, 44)
+color = Color(0.3, 0.17, 0.1, 1)
+polygon = PackedVector2Array(-8, -10, 8, -10, 8, 10, -8, 10)
+
+[node name="Window" type="Polygon2D" parent="."]
+position = Vector2(-43, -15)
+color = Color(0.31, 0.22, 0.15, 1)
+polygon = PackedVector2Array(-6, -5, 6, -5, 6, 5, -6, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("HouseFootprint")

@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/cangaceiro.gd" id="1_enemy_script"]
+[ext_resource type="Script" path="res://scripts/enemies/cangaceiro_hurtbox.gd" id="2_hurtbox_script"]
+
+[sub_resource type="CircleShape2D" id="BodyShape"]
+radius = 13.0
+[sub_resource type="CircleShape2D" id="DetectionShape"]
+radius = 220.0
+[sub_resource type="RectangleShape2D" id="AttackShape"]
+size = Vector2(40, 42)
+
+[node name="Dinossauro" type="CharacterBody2D" groups=["dialogue_interruptible"]]
+collision_layer = 4
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_enemy_script")
+speed = 72.0
+max_health = 40
+detection_range = 220.0
+attack_distance = 38.0
+attack_damage = 1
+attack_cooldown = 1.5
+attack_length = 44.0
+attack_width = 42.0
+ammo_reward = 2
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.34, 0.52, 0.25, 1)
+polygon = PackedVector2Array(-8, -13, -6, -19, 0, -23, 6, -19, 8, -13, 13, -7, 13, 6, 8, 12, 6, 19, 2, 15, 0, 10, -2, 15, -6, 19, -8, 12, -13, 6, -13, -7)
+
+[node name="Spines" type="Polygon2D" parent="Visual"]
+color = Color(0.76, 0.66, 0.34, 1)
+polygon = PackedVector2Array(-2, -9, 0, -13, 2, -9, 2, 2, 0, 6, -2, 2)
+
+[node name="DirectionMarker" type="Polygon2D" parent="."]
+position = Vector2(-15, 0)
+color = Color(0.96, 0.82, 0.48, 1)
+polygon = PackedVector2Array(-2, -4, 6, 0, -2, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("BodyShape")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("DetectionShape")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("AttackShape")
+disabled = true
+
+[node name="AttackVisual" type="Polygon2D" parent="AttackArea"]
+color = Color(1, 0.25, 0.16, 0.42)
+polygon = PackedVector2Array(-21, -22, 21, -22, 21, 22, -21, 22)
+visible = false
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_hurtbox_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("BodyShape")

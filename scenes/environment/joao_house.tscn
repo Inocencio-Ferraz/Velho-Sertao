@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="RectangleShape2D" id="WallTop"]
+size = Vector2(140, 12)
+[sub_resource type="RectangleShape2D" id="WallSide"]
+size = Vector2(12, 100)
+[sub_resource type="RectangleShape2D" id="WallDoorLeft"]
+size = Vector2(44, 12)
+[sub_resource type="RectangleShape2D" id="WallDoorRight"]
+size = Vector2(44, 12)
+
+[node name="CasaJoaoGrilo" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 1
+
+[node name="Interior" type="Polygon2D" parent="."]
+color = Color(0.62, 0.48, 0.32, 1)
+polygon = PackedVector2Array(-62, -48, 62, -48, 62, 48, -62, 48)
+
+[node name="BackWall" type="Polygon2D" parent="."]
+color = Color(0.74, 0.61, 0.42, 1)
+polygon = PackedVector2Array(-70, -56, 70, -56, 70, -44, -70, -44)
+
+[node name="LeftWall" type="Polygon2D" parent="."]
+color = Color(0.69, 0.55, 0.37, 1)
+polygon = PackedVector2Array(-70, -50, -58, -50, -58, 50, -70, 58)
+
+[node name="RightWall" type="Polygon2D" parent="."]
+color = Color(0.69, 0.55, 0.37, 1)
+polygon = PackedVector2Array(58, -50, 70, -50, 70, 58, 58, 50)
+
+[node name="FrontWallLeft" type="Polygon2D" parent="."]
+color = Color(0.78, 0.65, 0.45, 1)
+polygon = PackedVector2Array(-70, 44, -20, 44, -20, 56, -70, 58)
+
+[node name="FrontWallRight" type="Polygon2D" parent="."]
+color = Color(0.78, 0.65, 0.45, 1)
+polygon = PackedVector2Array(20, 44, 70, 44, 70, 58, 20, 56)
+
+[node name="RoofBack" type="Polygon2D" parent="."]
+color = Color(0.42, 0.22, 0.16, 1)
+polygon = PackedVector2Array(-80, -68, 0, -88, 80, -68, 68, -46, -68, -46)
+
+[node name="RoofLeft" type="Polygon2D" parent="."]
+color = Color(0.48, 0.25, 0.17, 1)
+polygon = PackedVector2Array(-80, -68, -68, -46, -68, 48, -80, 62)
+
+[node name="RoofRight" type="Polygon2D" parent="."]
+color = Color(0.48, 0.25, 0.17, 1)
+polygon = PackedVector2Array(68, -46, 80, -68, 80, 62, 68, 48)
+
+[node name="DoorThreshold" type="Polygon2D" parent="."]
+color = Color(0.31, 0.2, 0.14, 1)
+polygon = PackedVector2Array(-20, 45, 20, 45, 20, 54, -20, 54)
+
+[node name="OpenDoor" type="Polygon2D" parent="."]
+position = Vector2(34, 50)
+rotation = -0.65
+color = Color(0.3, 0.17, 0.1, 1)
+polygon = PackedVector2Array(-4, -16, 4, -16, 4, 16, -4, 16)
+
+[node name="WindowLeft" type="Polygon2D" parent="."]
+position = Vector2(-43, -20)
+color = Color(0.31, 0.22, 0.15, 1)
+polygon = PackedVector2Array(-6, -5, 6, -5, 6, 5, -6, 5)
+
+[node name="WindowRight" type="Polygon2D" parent="."]
+position = Vector2(43, -20)
+color = Color(0.31, 0.22, 0.15, 1)
+polygon = PackedVector2Array(-6, -5, 6, -5, 6, 5, -6, 5)
+
+[node name="TopWall" type="CollisionShape2D" parent="."]
+position = Vector2(0, -50)
+shape = SubResource("WallTop")
+
+[node name="WallColliderLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-64, 0)
+shape = SubResource("WallSide")
+
+[node name="WallColliderRight" type="CollisionShape2D" parent="."]
+position = Vector2(64, 0)
+shape = SubResource("WallSide")
+
+[node name="DoorLeftWall" type="CollisionShape2D" parent="."]
+position = Vector2(-42, 50)
+shape = SubResource("WallDoorLeft")
+
+[node name="DoorRightWall" type="CollisionShape2D" parent="."]
+position = Vector2(42, 50)
+shape = SubResource("WallDoorRight")

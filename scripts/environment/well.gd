@@ -11,6 +11,9 @@ extends StaticBody2D
 	"Melhor ver o segundo poço."
 ])
 @export var blocked_prompt_text: String = ""
+@export var required_progress_state: int = -1
+@export var unavailable_prompt_text: String = ""
+@export var starts_dream_ending: bool = false
 
 @onready var dialogue_box: Node = get_node(dialogue_box_path)
 @onready var story_progress: Node = get_node(story_progress_path)
@@ -21,10 +24,14 @@ var _living_enemy_count: int = 0
 var _defeated_enemies: Dictionary = {}
 var _unlocked: bool = false
 var _completed: bool = false
+var _ending_sequence_started: bool = false
 
 func _ready() -> void:
 	$InteractionArea.body_entered.connect(_on_body_entered)
 	$InteractionArea.body_exited.connect(_on_body_exited)
+	dialogue_box.connect("dialogue_completed", _on_dialogue_completed)
+	if story_progress.has_signal("state_changed"):
+		story_progress.connect("state_changed", _on_story_state_changed)
 
 	for enemy in get_tree().get_nodes_in_group(enemy_group):
 		if bool(enemy.get("is_dead")) or not enemy.has_signal("defeated"):
@@ -36,7 +43,7 @@ func _ready() -> void:
 	_update_prompt()
 
 func interact(player: Node2D) -> void:
-	if _completed or not _unlocked or player != _player_in_range:
+	if _completed or not _unlocked or not _progress_requirement_met() or player != _player_in_range:
 		return
 	if bool(player.get("is_dead")) or bool(player.get("controls_locked")):
 		return
@@ -45,6 +52,7 @@ func interact(player: Node2D) -> void:
 	_update_prompt()
 	dry_visual.color = Color(0.2, 0.16, 0.12, 1.0)
 	story_progress.call(progress_completion_method)
+	_ending_sequence_started = starts_dream_ending
 	dialogue_box.call("start_dialogue", dialogue_speaker, dialogue_lines)
 
 func _on_body_entered(body: Node2D) -> void:
@@ -64,10 +72,23 @@ func _on_enemy_defeated(enemy: Node) -> void:
 		return
 	_defeated_enemies[enemy] = true
 	_living_enemy_count = maxi(0, _living_enemy_count - 1)
-	story_progress.call(progress_encounter_method)
+	if _progress_requirement_met():
+		story_progress.call(progress_encounter_method)
 	if _living_enemy_count == 0:
 		_unlocked = true
 	_update_prompt()
+
+func _on_story_state_changed(_new_state: int) -> void:
+	_update_prompt()
+
+func _on_dialogue_completed(speaker: String) -> void:
+	if not _ending_sequence_started:
+		return
+	if speaker == dialogue_speaker:
+		dialogue_box.call("start_dialogue", "João Grilo", PackedStringArray(["Foi apenas um sonho..."]))
+	elif speaker == "João Grilo":
+		_ending_sequence_started = false
+		get_tree().call_deferred("reload_current_scene")
 
 func _update_prompt() -> void:
 	var prompt := get_tree().get_first_node_in_group("interaction_prompt")
@@ -77,9 +98,19 @@ func _update_prompt() -> void:
 		prompt.call("unregister_candidate", self)
 		return
 
-	if _unlocked:
+	if not _progress_requirement_met():
+		if unavailable_prompt_text.is_empty():
+			prompt.call("unregister_candidate", self)
+		else:
+			prompt.call("register_candidate", self, unavailable_prompt_text, 2, _player_in_range)
+	elif _unlocked:
 		prompt.call("register_candidate", self, "[E] Examinar o poço", 2, _player_in_range)
 	elif not blocked_prompt_text.is_empty():
 		prompt.call("register_candidate", self, blocked_prompt_text, 2, _player_in_range)
 	else:
 		prompt.call("unregister_candidate", self)
+
+func _progress_requirement_met() -> bool:
+	if required_progress_state < 0:
+		return true
+	return int(story_progress.get("current_state")) >= required_progress_state

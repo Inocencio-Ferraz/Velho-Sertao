@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -17,13 +17,16 @@
 [ext_resource type="PackedScene" path="res://scenes/environment/dry_tree.tscn" id="15_dry_tree"]
 [ext_resource type="PackedScene" path="res://scenes/environment/dry_bush.tscn" id="16_dry_bush"]
 [ext_resource type="PackedScene" path="res://scenes/environment/cactus_decoration.tscn" id="17_cactus_decoration"]
+[ext_resource type="PackedScene" path="res://scenes/environment/joao_house.tscn" id="18_joao_house"]
+[ext_resource type="PackedScene" path="res://scenes/environment/village_house.tscn" id="19_village_house"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/dinosaur.tscn" id="20_dinosaur"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
-size = Vector2(640, 24)
+size = Vector2(960, 24)
 [sub_resource type="RectangleShape2D" id="Shape_wall_bottom"]
-size = Vector2(640, 24)
+size = Vector2(960, 24)
 [sub_resource type="RectangleShape2D" id="Shape_wall_side"]
-size = Vector2(24, 1500)
+size = Vector2(24, 3000)
 [sub_resource type="RectangleShape2D" id="Shape_rock"]
 size = Vector2(72, 36)
 [sub_resource type="RectangleShape2D" id="Shape_stump"]
@@ -40,10 +43,25 @@ polygon = PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2000, -2000, 2000)
 
 [node name="SandyTrail" type="Polygon2D" parent="."]
 color = Color(0.56, 0.44, 0.29, 1)
-polygon = PackedVector2Array(250, 180, 290, 250, 270, 330, 305, 410, 280, 500, 315, 590, 280, 680, 310, 770, 275, 860, 300, 950, 265, 1040, 295, 1130, 275, 1230, 300, 1320, 445, 1320, 430, 1230, 455, 1130, 430, 1040, 455, 950, 425, 860, 450, 770, 425, 680, 455, 590, 425, 500, 455, 410, 430, 330, 450, 250, 410, 180)
+polygon = PackedVector2Array(360, 730, 400, 800, 380, 880, 415, 960, 390, 1050, 425, 1140, 390, 1230, 420, 1320, 385, 1410, 410, 1500, 375, 1590, 405, 1680, 385, 1780, 410, 1870, 555, 1870, 540, 1780, 565, 1680, 540, 1590, 565, 1500, 535, 1410, 560, 1320, 535, 1230, 565, 1140, 535, 1050, 565, 960, 535, 880, 560, 800, 520, 730)
+
+[node name="SandyTrailToChurch" type="Polygon2D" parent="."]
+color = Color(0.56, 0.44, 0.29, 1)
+polygon = PackedVector2Array(400, 430, 430, 470, 450, 510, 430, 560, 400, 610, 375, 670, 360, 730, 520, 730, 545, 670, 570, 610, 600, 560, 610, 510, 590, 470, 560, 430)
+
+[node name="SandyTrailVillage" type="Polygon2D" parent="."]
+color = Color(0.56, 0.44, 0.29, 1)
+polygon = PackedVector2Array(240, 485, 285, 455, 335, 440, 385, 438, 430, 450, 465, 475, 500, 500, 495, 540, 460, 525, 420, 505, 375, 495, 330, 505, 280, 530, 230, 535)
+
+[node name="SandyTrailFinal" type="Polygon2D" parent="."]
+color = Color(0.56, 0.44, 0.29, 1)
+polygon = PackedVector2Array(410, 1870, 390, 1950, 420, 2030, 390, 2110, 425, 2190, 395, 2270, 430, 2350, 405, 2430, 430, 2510, 555, 2510, 535, 2430, 560, 2350, 535, 2270, 565, 2190, 535, 2110, 565, 2030, 535, 1950, 555, 1870)
+
+[node name="CasaJoaoGrilo" parent="." instance=ExtResource("18_joao_house")]
+position = Vector2(300, 460)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(320, 270)
+position = Vector2(300, 460)
 
 [node name="HealthHUD" parent="." instance=ExtResource("2_hud")]
 
@@ -56,26 +74,33 @@ position = Vector2(320, 270)
 [node name="InteractionPrompt" parent="." instance=ExtResource("10_interaction_prompt")]
 
 [node name="Church" parent="." instance=ExtResource("7_church")]
-position = Vector2(320, 75)
+position = Vector2(480, 430)
+
+[node name="CasaDecorativaDireita1" parent="." instance=ExtResource("19_village_house")]
+position = Vector2(700, 420)
+
+[node name="CasaDecorativaDireita2" parent="." instance=ExtResource("19_village_house")]
+position = Vector2(710, 610)
+scale = Vector2(0.92, 0.92)
 
 [node name="DialogueBox" parent="." instance=ExtResource("8_dialogue")]
 
 [node name="PrimeiroPoco" parent="." instance=ExtResource("11_well")]
-position = Vector2(320, 600)
+position = Vector2(480, 1150)
 
 [node name="Padre" parent="." instance=ExtResource("9_priest")]
-position = Vector2(320, 155)
+position = Vector2(480, 510)
 
 [node name="Cangaceiro1" parent="." groups=["first_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(255, 520)
+position = Vector2(415, 1070)
 ammo_reward = 2
 
 [node name="Cangaceiro2" parent="." groups=["first_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(385, 520)
+position = Vector2(545, 1070)
 ammo_reward = 2
 
 [node name="SegundoPoco" parent="." instance=ExtResource("11_well")]
-position = Vector2(320, 1320)
+position = Vector2(480, 1870)
 enemy_group = "second_well_enemy"
 progress_encounter_method = "begin_second_well_encounter"
 progress_completion_method = "complete_second_well"
@@ -83,23 +108,41 @@ dialogue_lines = PackedStringArray("Também está seco...", "Preciso ver o últi
 blocked_prompt_text = "Poço protegido: derrote os cangaceiros"
 
 [node name="Cangaceiro3" parent="." groups=["second_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(200, 1240)
+position = Vector2(360, 1790)
 ammo_reward = 2
 has_pistol = true
 starting_ammo = 3
 ranged_attack_range = 180.0
 ranged_attack_cooldown = 3.0
 
+[node name="TerceiroPoco" parent="." instance=ExtResource("11_well")]
+position = Vector2(480, 2600)
+enemy_group = "third_well_enemy"
+progress_encounter_method = "begin_third_well_encounter"
+progress_completion_method = "complete_third_well"
+dialogue_speaker = "Poço"
+dialogue_lines = PackedStringArray("Água!", "Finalmente...")
+blocked_prompt_text = "Poço protegido: derrote os dinossauros"
+required_progress_state = 5
+unavailable_prompt_text = "Investigue o segundo poço primeiro"
+starts_dream_ending = true
+
+[node name="Dinossauro1" parent="." groups=["third_well_enemy"] instance=ExtResource("20_dinosaur")]
+position = Vector2(415, 2510)
+
+[node name="Dinossauro2" parent="." groups=["third_well_enemy"] instance=ExtResource("20_dinosaur")]
+position = Vector2(545, 2510)
+
 [node name="Cangaceiro4" parent="." groups=["second_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(280, 1240)
+position = Vector2(440, 1790)
 ammo_reward = 2
 
 [node name="Cangaceiro5" parent="." groups=["second_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(360, 1240)
+position = Vector2(520, 1790)
 ammo_reward = 2
 
 [node name="Cangaceiro6" parent="." groups=["second_well_enemy"] instance=ExtResource("3_cangaceiro")]
-position = Vector2(440, 1240)
+position = Vector2(600, 1790)
 ammo_reward = 2
 has_pistol = true
 starting_ammo = 3
@@ -107,138 +150,158 @@ ranged_attack_range = 180.0
 ranged_attack_cooldown = 3.0
 
 [node name="CactusNear" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(260, 180)
+position = Vector2(390, 300)
 
 [node name="CactusMiddle" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(390, 245)
+position = Vector2(550, 320)
 
 [node name="CactusFar" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(150, 90)
+position = Vector2(240, 365)
 
 [node name="CactusPath1" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(475, 760)
+position = Vector2(635, 1115)
 
 [node name="CactusPath2" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(155, 920)
+position = Vector2(265, 1275)
 
 [node name="CactusPath3" parent="." instance=ExtResource("5_cactus")]
-position = Vector2(480, 1080)
+position = Vector2(640, 1435)
+
+[node name="CactusFinalPath" parent="." instance=ExtResource("5_cactus")]
+position = Vector2(640, 2260)
 
 [node name="RockCluster01" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(92, 365)
+position = Vector2(120, 720)
 
 [node name="RockCluster02" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(548, 375)
+position = Vector2(835, 730)
 scale = Vector2(0.85, 0.85)
 
 [node name="RockCluster03" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(86, 625)
+position = Vector2(115, 900)
 scale = Vector2(0.9, 0.9)
 
 [node name="RockCluster04" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(552, 650)
+position = Vector2(845, 900)
 
 [node name="RockCluster05" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(94, 845)
+position = Vector2(125, 1200)
 
 [node name="RockCluster06" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(548, 900)
+position = Vector2(835, 1255)
 scale = Vector2(0.8, 0.8)
 
 [node name="RockCluster07" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(88, 1135)
+position = Vector2(120, 1450)
 
 [node name="RockCluster08" parent="." instance=ExtResource("14_rock_cluster")]
-position = Vector2(550, 1135)
+position = Vector2(840, 1450)
 
 [node name="DryTree01" parent="." instance=ExtResource("15_dry_tree")]
-position = Vector2(135, 465)
+position = Vector2(270, 820)
 
 [node name="DryTree02" parent="." instance=ExtResource("15_dry_tree")]
-position = Vector2(520, 805)
+position = Vector2(690, 850)
 scale = Vector2(1.1, 1.1)
 
 [node name="DryTree03" parent="." instance=ExtResource("15_dry_tree")]
-position = Vector2(115, 1000)
+position = Vector2(260, 1550)
 scale = Vector2(0.9, 0.9)
 
 [node name="DryBush01" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(180, 355)
+position = Vector2(220, 710)
 
 [node name="DryBush02" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(465, 445)
+position = Vector2(750, 800)
 scale = Vector2(1.1, 1.1)
 
 [node name="DryBush03" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(155, 680)
+position = Vector2(230, 1035)
 
 [node name="DryBush04" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(485, 700)
+position = Vector2(750, 1055)
 scale = Vector2(0.9, 0.9)
 
 [node name="DryBush05" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(185, 955)
+position = Vector2(250, 1310)
 
 [node name="DryBush06" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(468, 1000)
+position = Vector2(730, 1355)
 scale = Vector2(1.15, 1.15)
 
 [node name="DryBush07" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(180, 1145)
+position = Vector2(210, 1695)
 
 [node name="DryBush08" parent="." instance=ExtResource("16_dry_bush")]
-position = Vector2(470, 1155)
+position = Vector2(760, 1705)
 
 [node name="CactusDecor01" parent="." instance=ExtResource("17_cactus_decoration")]
-position = Vector2(82, 475)
+position = Vector2(150, 830)
 
 [node name="CactusDecor02" parent="." instance=ExtResource("17_cactus_decoration")]
-position = Vector2(560, 540)
+position = Vector2(810, 895)
 scale = Vector2(1.15, 1.15)
 
 [node name="CactusDecor03" parent="." instance=ExtResource("17_cactus_decoration")]
-position = Vector2(80, 760)
+position = Vector2(150, 1115)
 
 [node name="CactusDecor04" parent="." instance=ExtResource("17_cactus_decoration")]
-position = Vector2(558, 975)
+position = Vector2(810, 1525)
 scale = Vector2(0.9, 0.9)
+
+[node name="RockClusterThirdAreaLeft" parent="." instance=ExtResource("14_rock_cluster")]
+position = Vector2(130, 2180)
+scale = Vector2(0.9, 0.9)
+
+[node name="RockClusterThirdAreaRight" parent="." instance=ExtResource("14_rock_cluster")]
+position = Vector2(835, 2350)
+scale = Vector2(0.85, 0.85)
+
+[node name="DryBushThirdAreaLeft" parent="." instance=ExtResource("16_dry_bush")]
+position = Vector2(250, 2390)
+
+[node name="DryBushThirdAreaRight" parent="." instance=ExtResource("16_dry_bush")]
+position = Vector2(760, 2440)
+
+[node name="CactusDecorThirdArea" parent="." instance=ExtResource("17_cactus_decoration")]
+position = Vector2(175, 2560)
 
 [node name="Bounds" type="Node2D" parent="."]
 
 [node name="Top" type="StaticBody2D" parent="Bounds"]
-position = Vector2(320, 12)
+position = Vector2(480, 12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
 shape = SubResource("Shape_wall_top")
 [node name="Visual" type="Polygon2D" parent="Bounds/Top"]
 color = Color(0.25, 0.2, 0.14, 1)
-polygon = PackedVector2Array(-320, -12, 320, -12, 320, 12, -320, 12)
+polygon = PackedVector2Array(-480, -12, 480, -12, 480, 12, -480, 12)
 
 [node name="Bottom" type="StaticBody2D" parent="Bounds"]
-position = Vector2(320, 1488)
+position = Vector2(480, 2988)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
 shape = SubResource("Shape_wall_bottom")
 [node name="Visual" type="Polygon2D" parent="Bounds/Bottom"]
 color = Color(0.25, 0.2, 0.14, 1)
-polygon = PackedVector2Array(-320, -12, 320, -12, 320, 12, -320, 12)
+polygon = PackedVector2Array(-480, -12, 480, -12, 480, 12, -480, 12)
 
 [node name="Left" type="StaticBody2D" parent="Bounds"]
-position = Vector2(12, 750)
+position = Vector2(12, 1500)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
 shape = SubResource("Shape_wall_side")
 [node name="Visual" type="Polygon2D" parent="Bounds/Left"]
 color = Color(0.25, 0.2, 0.14, 1)
-polygon = PackedVector2Array(-12, -750, 12, -750, 12, 750, -12, 750)
+polygon = PackedVector2Array(-12, -1500, 12, -1500, 12, 1500, -12, 1500)
 
 [node name="Right" type="StaticBody2D" parent="Bounds"]
-position = Vector2(628, 750)
+position = Vector2(948, 1500)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
 shape = SubResource("Shape_wall_side")
 [node name="Visual" type="Polygon2D" parent="Bounds/Right"]
 color = Color(0.25, 0.2, 0.14, 1)
-polygon = PackedVector2Array(-12, -750, 12, -750, 12, 750, -12, 750)
+polygon = PackedVector2Array(-12, -1500, 12, -1500, 12, 1500, -12, 1500)
 
 [node name="Rock" type="StaticBody2D" parent="."]
-position = Vector2(405, 150)
+position = Vector2(720, 700)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
 shape = SubResource("Shape_rock")
 [node name="Visual" type="Polygon2D" parent="Rock"]
@@ -246,7 +309,7 @@ color = Color(0.35, 0.33, 0.29, 1)
 polygon = PackedVector2Array(-36, -18, 24, -18, 36, -4, 28, 18, -30, 18, -36, 4)
 
 [node name="Stump" type="StaticBody2D" parent="."]
-position = Vector2(245, 250)
+position = Vector2(260, 760)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stump"]
 shape = SubResource("Shape_stump")
 [node name="Visual" type="Polygon2D" parent="Stump"]
