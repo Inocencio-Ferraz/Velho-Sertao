@@ -28,6 +28,7 @@ signal defeated(enemy: Node)
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var visual: Polygon2D = $Visual
 @onready var direction_marker: Polygon2D = $DirectionMarker
+@onready var muzzle_flash := get_node_or_null("MuzzleFlash") as Polygon2D
 
 enum State { IDLE, CHASE, ATTACK, DEAD }
 
@@ -41,6 +42,7 @@ var _attack_ready: bool = true
 var _attack_is_active: bool = false
 var _attack_has_hit: bool = false
 var _hit_tween: Tween
+var _base_visual_color: Color
 var _ranged_ammo: int = 0
 var _ranged_shot_ready: bool = true
 var _ammo_reward_paid: bool = false
@@ -48,6 +50,7 @@ var _ammo_reward_paid: bool = false
 func _ready() -> void:
 	max_health = maxi(1, max_health)
 	health = max_health
+	_base_visual_color = visual.color
 	_ranged_ammo = maxi(0, starting_ammo) if has_pistol else 0
 
 	var detection_circle := detection_shape.shape as CircleShape2D
@@ -174,6 +177,7 @@ func _fire_ranged_shot() -> void:
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = global_position + shot_direction * 13.0
 	bullet.call("launch", shot_direction, 1, 1, 500.0)
+	_show_muzzle_flash(shot_direction)
 
 	var cooldown := maxf(3.0, ranged_attack_cooldown)
 	get_tree().create_timer(cooldown).timeout.connect(_on_ranged_cooldown_finished)
@@ -235,12 +239,26 @@ func _lose_target() -> void:
 func _show_hit_feedback() -> void:
 	if _hit_tween and _hit_tween.is_running():
 		_hit_tween.kill()
-	visual.color = Color(1.0, 0.75, 0.35, 1.0)
+	visual.color = Color(1.0, 0.88, 0.62, 1.0)
 	_hit_tween = create_tween()
-	_hit_tween.tween_property(visual, "color", Color(0.55, 0.2, 0.16, 1.0), 0.18)
+	_hit_tween.tween_property(visual, "color", _base_visual_color, 0.18)
+
+func _show_muzzle_flash(direction: Vector2) -> void:
+	if not is_instance_valid(muzzle_flash):
+		return
+	muzzle_flash.position = direction * 15.0
+	muzzle_flash.rotation = direction.angle()
+	muzzle_flash.visible = true
+	get_tree().create_timer(0.06).timeout.connect(_hide_muzzle_flash)
+
+func _hide_muzzle_flash() -> void:
+	if is_instance_valid(muzzle_flash):
+		muzzle_flash.visible = false
 
 func _die() -> void:
 	is_dead = true
+	if _hit_tween and _hit_tween.is_running():
+		_hit_tween.kill()
 	_award_ammo()
 	defeated.emit(self)
 	_state = State.DEAD
@@ -253,6 +271,9 @@ func _die() -> void:
 	attack_area.set_deferred("monitoring", false)
 	hurtbox.set_deferred("monitoring", false)
 	hurtbox.set_deferred("monitorable", false)
+	var death_tween := create_tween().set_parallel(true)
+	death_tween.tween_property(visual, "scale", Vector2(0.68, 0.68), 0.2)
+	death_tween.tween_property(visual, "modulate:a", 0.0, 0.2)
 	print("Cangaceiro derrotado.")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()

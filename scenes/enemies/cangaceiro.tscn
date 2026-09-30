@@ -27,6 +27,11 @@ position = Vector2(-15, 0)
 color = Color(0.96, 0.82, 0.48, 1)
 polygon = PackedVector2Array(-2, -4, 6, 0, -2, 4)
 
+[node name="MuzzleFlash" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.55, 0.25, 0.9)
+polygon = PackedVector2Array(-3, -5, 9, 0, -3, 5)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_body")
 

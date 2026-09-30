@@ -15,6 +15,8 @@ var facing_direction: Vector2 = Vector2.DOWN
 @onready var melee_attack: Area2D = $MeleeAttack
 @onready var pistol: Node2D = $Pistol
 
+var _damage_feedback_tween: Tween
+
 func _ready() -> void:
 	_update_facing_visuals()
 	max_health = maxi(1, max_health)
@@ -49,6 +51,7 @@ func take_damage(amount: int) -> void:
 
 	health = maxi(0, health - amount)
 	health_changed.emit(health, max_health)
+	_show_damage_feedback()
 
 	if health == 0:
 		is_dead = true
@@ -80,3 +83,10 @@ func _update_facing_visuals() -> void:
 	direction_marker.position = facing_direction * 15.0
 	direction_marker.rotation = facing_direction.angle() + PI / 2.0
 	melee_attack.call("set_facing_direction", facing_direction)
+
+func _show_damage_feedback() -> void:
+	if _damage_feedback_tween and _damage_feedback_tween.is_running():
+		_damage_feedback_tween.kill()
+	modulate = Color(1.0, 0.58, 0.52, 1.0)
+	_damage_feedback_tween = create_tween()
+	_damage_feedback_tween.tween_property(self, "modulate", Color.WHITE, 0.18)

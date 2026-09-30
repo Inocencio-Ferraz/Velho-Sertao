@@ -9,6 +9,8 @@ signal ammo_changed(current_ammo: int)
 @export var cooldown: float = 0.4
 @export_flags_2d_physics var hit_mask: int = 5
 
+@onready var muzzle_flash: Polygon2D = $MuzzleFlash
+
 var ammo: int = 6
 var _can_fire: bool = true
 
@@ -42,6 +44,16 @@ func _shoot_in_facing_direction(player: CharacterBody2D) -> void:
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = player.global_position + direction * 16.0
 	bullet.call("launch", direction, damage, hit_mask, shot_range)
+	_show_muzzle_flash(direction)
+
+func _show_muzzle_flash(direction: Vector2) -> void:
+	muzzle_flash.position = direction * 16.0
+	muzzle_flash.rotation = direction.angle()
+	muzzle_flash.visible = true
+	get_tree().create_timer(0.06).timeout.connect(_hide_muzzle_flash)
+
+func _hide_muzzle_flash() -> void:
+	muzzle_flash.visible = false
 
 func _on_cooldown_finished() -> void:
 	_can_fire = true

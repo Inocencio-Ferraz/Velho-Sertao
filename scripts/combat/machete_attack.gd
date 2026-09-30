@@ -45,8 +45,11 @@ func _try_attack() -> void:
 	can_attack = false
 	attack_is_active = true
 	hit_targets.clear()
+	attack_visual.scale = Vector2(0.88, 0.88)
 	attack_visual.visible = true
 	hit_shape.set_deferred("disabled", false)
+	var swing_tween := create_tween()
+	swing_tween.tween_property(attack_visual, "scale", Vector2.ONE, active_duration)
 	get_tree().create_timer(cooldown).timeout.connect(_on_cooldown_finished)
 
 	# Espera a física para coletar também alvos que já estavam dentro da área.
@@ -57,12 +60,14 @@ func _try_attack() -> void:
 	await get_tree().create_timer(active_duration).timeout
 	attack_is_active = false
 	attack_visual.visible = false
+	attack_visual.scale = Vector2.ONE
 	hit_shape.set_deferred("disabled", true)
 
 
 func cancel_active_attack() -> void:
 	attack_is_active = false
 	attack_visual.visible = false
+	attack_visual.scale = Vector2.ONE
 	hit_shape.set_deferred("disabled", true)
 
 func _on_area_entered(area: Area2D) -> void:

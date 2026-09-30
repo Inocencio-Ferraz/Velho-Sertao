@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/game_over.gd" id="1_script"]
+[ext_resource type="Theme" path="res://themes/sertanejo_ui.tres" id="2_theme"]
 
 [node name="GameOver" type="CanvasLayer" groups=["game_over"]]
 layer = 20
@@ -9,6 +10,7 @@ script = ExtResource("1_script")
 player_path = NodePath("../Player")
 
 [node name="Overlay" type="Control" parent="."]
+theme = ExtResource("2_theme")
 visible = false
 layout_mode = 3
 anchors_preset = 15

@@ -18,6 +18,8 @@ extends StaticBody2D
 @onready var dialogue_box: Node = get_node(dialogue_box_path)
 @onready var story_progress: Node = get_node(story_progress_path)
 @onready var dry_visual: Polygon2D = $DryCenter
+@onready var stone_ring: Polygon2D = $StoneRing
+@onready var water_visual: Polygon2D = $WaterShine
 
 var _player_in_range: CharacterBody2D
 var _living_enemy_count: int = 0
@@ -50,7 +52,7 @@ func interact(player: Node2D) -> void:
 
 	_completed = true
 	_update_prompt()
-	dry_visual.color = Color(0.2, 0.16, 0.12, 1.0)
+	_play_examine_feedback()
 	story_progress.call(progress_completion_method)
 	_ending_sequence_started = starts_dream_ending
 	dialogue_box.call("start_dialogue", dialogue_speaker, dialogue_lines)
@@ -114,3 +116,21 @@ func _progress_requirement_met() -> bool:
 	if required_progress_state < 0:
 		return true
 	return int(story_progress.get("current_state")) >= required_progress_state
+
+func _play_examine_feedback() -> void:
+	var ring_tween := create_tween()
+	stone_ring.scale = Vector2(0.94, 0.94)
+	stone_ring.modulate = Color(1.0, 0.9, 0.68, 1.0)
+	ring_tween.set_parallel(true)
+	ring_tween.tween_property(stone_ring, "scale", Vector2.ONE, 0.22)
+	ring_tween.tween_property(stone_ring, "modulate", Color.WHITE, 0.28)
+
+	if starts_dream_ending:
+		dry_visual.color = Color(0.17, 0.37, 0.4, 1.0)
+		water_visual.visible = true
+		water_visual.scale = Vector2(0.82, 0.82)
+		var water_tween := create_tween().set_loops(4)
+		water_tween.tween_property(water_visual, "scale", Vector2(1.08, 1.08), 0.24)
+		water_tween.tween_property(water_visual, "scale", Vector2(0.9, 0.9), 0.24)
+	else:
+		dry_visual.color = Color(0.2, 0.16, 0.12, 1.0)

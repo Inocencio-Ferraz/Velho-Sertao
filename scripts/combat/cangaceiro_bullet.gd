@@ -8,6 +8,9 @@ var _direction: Vector2 = Vector2.ZERO
 var _distance_travelled: float = 0.0
 var _launched: bool = false
 
+@onready var visual: Polygon2D = $Visual
+@onready var trail: Line2D = $Trail
+
 func launch(
 	direction: Vector2,
 	damage_amount: int,
@@ -17,6 +20,9 @@ func launch(
 	_direction = direction.normalized()
 	damage = maxi(1, damage_amount)
 	collision_mask = target_collision_mask
+	var shot_color := Color(1.0, 0.9, 0.56, 1.0) if damage >= 10 else Color(1.0, 0.38, 0.24, 1.0)
+	visual.color = shot_color
+	trail.default_color = Color(shot_color.r, shot_color.g, shot_color.b, 0.55)
 	if distance_limit > 0.0:
 		max_distance = distance_limit
 	rotation = _direction.angle()

@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/ammo_hud.gd" id="1_script"]
+[ext_resource type="Theme" path="res://themes/sertanejo_ui.tres" id="2_theme"]
 
 [node name="AmmoHUD" type="CanvasLayer"]
 script = ExtResource("1_script")
 pistol_path = NodePath("../Player/Pistol")
 
 [node name="Control" type="Control" parent="."]
+theme = ExtResource("2_theme")
 layout_mode = 3
 anchors_preset = 0
 

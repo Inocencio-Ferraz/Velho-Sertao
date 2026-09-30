@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/interaction_prompt.gd" id="1_script"]
+[ext_resource type="Theme" path="res://themes/sertanejo_ui.tres" id="2_theme"]
 
 [node name="InteractionPrompt" type="CanvasLayer" groups=["interaction_prompt"]]
 layer = 4
 script = ExtResource("1_script")
 
 [node name="PromptPanel" type="PanelContainer" parent="."]
+theme = ExtResource("2_theme")
 visible = false
 anchors_preset = 10
 anchor_left = 0.5

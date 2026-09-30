@@ -37,11 +37,16 @@ disabled = true
 
 [node name="AttackVisual" type="Polygon2D" parent="MeleeAttack"]
 color = Color(1, 0.65, 0.18, 0.45)
-polygon = PackedVector2Array(-18, -21, 18, -21, 18, 21, -18, 21)
+polygon = PackedVector2Array(-18, -15, -13, -21, 18, 15, 13, 21)
 visible = false
 
 [node name="Pistol" type="Node2D" parent="."]
 script = ExtResource("3_pistol")
+
+[node name="MuzzleFlash" type="Polygon2D" parent="Pistol"]
+visible = false
+color = Color(1, 0.82, 0.42, 0.9)
+polygon = PackedVector2Array(-3, -5, 10, 0, -3, 5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
