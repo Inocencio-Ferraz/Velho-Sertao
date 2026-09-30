@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/menu/main_menu.gd" id="1_script"]
-[ext_resource type="Theme" path="res://themes/sertanejo_ui.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/art/menu/main_menu_background.png" id="2_background"]
 
 [node name="MainMenu" type="Control"]
-theme = ExtResource("2_theme")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,62 +12,68 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.22, 0.16, 0.1, 1)
+texture_filter = 1
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
 
-[node name="CenterPanel" type="PanelContainer" parent="."]
+[node name="CenterPanel" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -145.0
-offset_right = 190.0
-offset_bottom = 145.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 26
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 26
-theme_override_constants/margin_bottom = 24
+[node name="MarginContainer" type="Control" parent="CenterPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterPanel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Title" type="Label" parent="CenterPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-text = "VELHO SERTÃO"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="CenterPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "O Sonho de Sousa"
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="CenterPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 2
+[node name="VBoxContainer" type="Control" parent="CenterPanel/MarginContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="StartButton" type="Button" parent="CenterPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(270, 44)
-layout_mode = 2
-text = "INICIAR JOGO"
+layout_mode = 1
+anchor_left = 0.39
+anchor_top = 0.758
+anchor_right = 0.606
+anchor_bottom = 0.836
+grow_horizontal = 2
+grow_vertical = 2
+modulate = Color(1, 1, 1, 0)
+mouse_default_cursor_shape = 2
+focus_neighbor_bottom = NodePath("../QuitButton")
+text = ""
 
 [node name="QuitButton" type="Button" parent="CenterPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(270, 44)
-layout_mode = 2
-text = "SAIR DO JOGO"
+layout_mode = 1
+anchor_left = 0.39
+anchor_top = 0.843
+anchor_right = 0.606
+anchor_bottom = 0.921
+grow_horizontal = 2
+grow_vertical = 2
+modulate = Color(1, 1, 1, 0)
+mouse_default_cursor_shape = 2
+focus_neighbor_top = NodePath("../StartButton")
+text = ""

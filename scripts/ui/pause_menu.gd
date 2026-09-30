@@ -2,11 +2,13 @@ extends CanvasLayer
 
 @onready var overlay: Control = $Overlay
 @onready var continue_button: Button = $Overlay/CenterPanel/MarginContainer/VBoxContainer/ContinueButton
+@onready var main_menu_button: Button = $Overlay/CenterPanel/MarginContainer/VBoxContainer/MainMenuButton
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	overlay.visible = false
 	continue_button.pressed.connect(_on_continue_pressed)
+	main_menu_button.pressed.connect(_on_main_menu_pressed)
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("pause_game"):
@@ -36,6 +38,11 @@ func _on_continue_pressed() -> void:
 	overlay.visible = false
 	_set_audio_paused(false)
 	continue_button.release_focus()
+
+func _on_main_menu_pressed() -> void:
+	var game_over := get_tree().get_first_node_in_group("game_over")
+	if game_over and game_over.has_method("return_to_menu"):
+		game_over.call("return_to_menu")
 
 func _set_audio_paused(paused: bool) -> void:
 	var audio_manager := get_tree().get_first_node_in_group("game_audio")

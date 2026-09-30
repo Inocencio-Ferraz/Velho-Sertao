@@ -14,7 +14,7 @@ func _ready() -> void:
 	overlay.visible = false
 	player.connect("died", _on_player_died)
 	retry_button.pressed.connect(_on_retry_pressed)
-	menu_button.pressed.connect(_on_menu_pressed)
+	menu_button.pressed.connect(return_to_menu)
 
 func _on_player_died() -> void:
 	is_open = true
@@ -29,7 +29,7 @@ func _on_retry_pressed() -> void:
 	if error != OK:
 		push_error("Não foi possível reiniciar a partida: %s" % error_string(error))
 
-func _on_menu_pressed() -> void:
+func return_to_menu() -> void:
 	is_open = false
 	get_tree().paused = false
 	var error := get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
