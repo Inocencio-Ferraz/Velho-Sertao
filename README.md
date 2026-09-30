@@ -1,35 +1,59 @@
-# Velho Sertão
+# O Sonho de Sousa
 
-Uma aventura de ação 2D ambientada no sertão paraibano do início do século XX. Em busca de água, João Grilo atravessa uma paisagem seca, enfrenta cangaceiros e procura os poços de Sousa.
+<p align="center">
+  <img src="assets/art/menu/main_menu_background.png" alt="Arte do menu principal de O Sonho de Sousa" width="800">
+</p>
+
+Uma aventura de ação e exploração 2D top-down ambientada no sertão paraibano no início do século XX, com referências ao contexto histórico do cangaço.
 
 ## Sobre o jogo
 
-Velho Sertão está sendo desenvolvido para a GameJam do X SEMITI, no IFPB Campus Monteiro. O protótipo combina exploração top-down, combate simples e uma jornada narrativa inspirada no sertão nordestino e no contexto histórico do cangaço.
-
-O percurso implementado leva o jogador da casa e da igreja ao primeiro poço e, depois, ao segundo. O segundo poço é protegido por quatro cangaceiros; dois deles usam pistolas. O terceiro poço, os dinossauros e o desfecho ainda serão desenvolvidos.
+Desenvolvido para a GameJam do X SEMITI, no IFPB Campus Monteiro, o jogo acompanha João Grilo em busca de água nos arredores de Sousa. Ele começa em casa e encontra o Padre junto à igreja; o Padre o orienta a procurar três poços. O primeiro é protegido por dois cangaceiros, o segundo por quatro — dois armados com pistolas — e o terceiro por dois dinossauros. Ao encontrar água, João ouve “Foi apenas um sonho...” e retorna para casa, revelando o desfecho da aventura.
 
 ## Informações
 
-- Tema: Velho Sertão
+- Tema: O Sonho de Sousa
 - Engine: Godot 4.7.2
 - Linguagem: GDScript
 - Gênero: ação e exploração 2D top-down
 - Ambientação: sertão nordestino, com referência à Paraíba e ao período do cangaço
-- Plataforma principal: desktop/Linux
+- Plataforma: desktop
+- Exportação planejada: Windows e Linux
 
-## Equipe
+## Autores
 
-- Inocencio-Ferraz
-- Bruno-arj
-- Clebio-Luis
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Inocencio-Ferraz">
+        <img src="https://github.com/Inocencio-Ferraz.png" width="96" height="96" alt="Avatar de Inocencio-Ferraz"><br>
+        <strong>Inocencio-Ferraz</strong>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Bruno-arj">
+        <img src="https://github.com/Bruno-arj.png" width="96" height="96" alt="Avatar de Bruno-arj"><br>
+        <strong>Bruno-arj</strong>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Clebio-Luis">
+        <img src="https://github.com/Clebio-Luis.png" width="96" height="96" alt="Avatar de Clebio-Luis"><br>
+        <strong>Clebio-Luis</strong>
+      </a>
+    </td>
+  </tr>
+</table>
 
-## Estado do protótipo
+## Estado do jogo
 
-O projeto inclui movimentação em oito direções, câmera, colisões, HUD de vida e munição, facão, pistola com projétil visível, cangaceiros com perseguição e ataques corpo a corpo ou à distância, cactos de cura de uso único, igreja, Padre com diálogo, dois poços, pausa e tela de Game Over.
-
-O jogador começa com 3 pontos de vida e 6 balas. Cada disparo da pistola causa 15 de dano, tem alcance máximo de 250 px e cooldown de 0,4 s. Cada cangaceiro derrotado fornece 2 balas, sem limite máximo de munição. Cangaceiros armados começam com 3 disparos; seus projéteis causam 1 ponto de dano e respeitam um intervalo mínimo de 3 s.
-
-Os cactos interativos recuperam 1 ponto de vida quando o jogador está ferido. Cada cacto pode ser usado uma vez e não é consumido quando o jogador está com a vida cheia. As teclas H e J são ações temporárias de teste para receber dano e recuperar vida.
+- Movimentação em oito direções, câmera acompanhando João e colisões no cenário.
+- HUD de vida e munição, sistema de vida, facão e pistola com projéteis visíveis.
+- Cangaceiros com ataques corpo a corpo e à distância; dinossauros protegem o terceiro poço.
+- Cactos interativos podem recuperar vida uma vez cada.
+- Padre e diálogos, três poços com acesso condicionado à derrota dos respectivos guardiões e placas de orientação pelo caminho.
+- Pausa, tela de Game Over, música, ambiência e efeitos sonoros.
+- Efeitos visuais para impactos e derrotas. Após o desfecho do sonho, João retorna para casa.
 
 ## Executar
 
@@ -41,7 +65,9 @@ Os cactos interativos recuperam 1 ponto de vida quando o jogador está ferido. C
 - W/A/S/D: movimentar
 - Mouse esquerdo: atacar com o facão
 - Mouse direito: disparar a pistola
-- E: interagir com cactos ou avançar o diálogo
+- E: interagir com cactos, poços e Padre; avançar diálogos
 - Esc: pausar ou continuar
-- H: teste de dano
-- J: teste de cura
+
+## Créditos
+
+As fontes e licenças dos assets de áudio estão registradas em [CREDITS.md](CREDITS.md).

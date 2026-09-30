@@ -1,6 +1,6 @@
 # Créditos de assets externos
 
-Este documento registra os arquivos de áudio selecionados para o projeto **Velho Sertão**. Os arquivos estão apenas organizados no projeto: esta etapa não os conecta a cenas, scripts ou reprodução de áudio.
+Este documento registra os arquivos de áudio usados em **O Sonho de Sousa**. A música e a ambiência acompanham o gameplay, e os efeitos sonoros são reproduzidos nos eventos correspondentes.
 
 As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de crédito solicitados ou sugeridos pelos autores estão reproduzidos junto às respectivas entradas.
 
@@ -13,7 +13,7 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — Desert Settlement](https://opengameart.org/content/desert-settlement)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito indicado na página:** “Vitalezzz - Desert Settlement”.
-- **Uso previsto:** música de fundo para a exploração do sertão.
+- **Uso no jogo:** música de fundo durante a exploração.
 
 ## Ambiente
 
@@ -24,7 +24,7 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — Birds and Wind - Ambient. Birds, Wind and Synth](https://opengameart.org/content/birds-and-wind-ambient-birds-wind-and-synth)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito indicado na página:** “Composer: Spring Some Bird Sound Effects (All Public Domain) by: isaiah658 syncopika pauliuw”. A formulação foi mantida como publicada na página.
-- **Uso previsto:** ambiente de vento e pássaros durante a exploração.
+- **Uso no jogo:** ambiência de vento e pássaros durante o gameplay.
 
 ## Efeitos sonoros
 
@@ -35,7 +35,7 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — 20 Sword Sound Effects](https://opengameart.org/content/20-sword-sound-effects-attacks-and-clashes) · [perfil do autor](https://opengameart.org/users/starninjas)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito:** a página pede como cortesia um link para o perfil do autor; incluído acima.
-- **Uso previsto:** som provisório de golpe/ataque do facão.
+- **Uso no jogo:** som do ataque de facão.
 
 ### `assets/audio/sfx/sfx_impact_01.ogg`
 
@@ -44,7 +44,7 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — 5 Hit Sounds + Dying](https://opengameart.org/content/5-hit-sounds-dying)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito:** a página não exige atribuição; crédito incluído como registro de procedência.
-- **Uso previsto:** efeito provisório de impacto.
+- **Uso no jogo:** efeito de impacto/dano.
 
 ### `assets/audio/sfx/sfx_enemy_death_01.ogg`
 
@@ -53,7 +53,7 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — 5 Hit Sounds + Dying](https://opengameart.org/content/5-hit-sounds-dying)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito:** a página não exige atribuição; crédito incluído como registro de procedência.
-- **Uso previsto:** efeito provisório de derrota de inimigo.
+- **Uso no jogo:** efeito de derrota de inimigo.
 
 ### `assets/audio/sfx/sfx_water_splash_01.ogg`
 
@@ -62,10 +62,10 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Origem:** [OpenGameArt — 40 CC0 water / splash / slime SFX](https://opengameart.org/content/40-cc0-water-splash-slime-sfx)
 - **Licença:** CC0, conforme a página do asset.
 - **Crédito:** não há aviso adicional de atribuição na página; crédito incluído como registro de procedência.
-- **Uso previsto:** efeito provisório relacionado à água/poço.
+- **Uso no jogo:** efeito de água ao encontrar o terceiro poço.
 
 ## Observações
 
 - Foram copiados somente os arquivos individuais listados acima; os pacotes completos de origem não fazem parte do projeto.
-- Os efeitos são opções provisórias e ainda não estão conectados ao jogo.
+- Os efeitos sonoros são assets provisórios usados nos eventos indicados acima.
 - Nenhum efeito de disparo foi incluído nesta seleção: a opção encontrada estava identificada como gravação de uma pistola CZ-52, inadequada como referência histórica direta para a ambientação de 1910–1920.
