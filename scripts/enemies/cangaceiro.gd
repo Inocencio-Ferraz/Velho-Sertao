@@ -288,6 +288,7 @@ func _die() -> void:
 	var death_tween := create_tween().set_parallel(true)
 	death_tween.tween_property(visual, "scale", Vector2(0.68, 0.68), 0.2)
 	death_tween.tween_property(visual, "modulate:a", 0.0, 0.2)
+	death_tween.tween_property(direction_marker, "modulate:a", 0.0, 0.2)
 	print("Cangaceiro derrotado.")
 	await get_tree().create_timer(0.2).timeout
 	queue_free()

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const HIT_IMPACT_SCENE: PackedScene = preload("res://scenes/vfx/melee_impact.tscn")
+
 @export var speed: float = 350.0
 @export var max_distance: float = 500.0
 
@@ -43,10 +45,21 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var target := collision.get_collider()
 		if target is Node and target.has_method("take_damage"):
-			target.call("take_damage", damage)
+			var target_is_dead := target is CharacterBody2D and bool(target.get("is_dead"))
+			if not target_is_dead:
+				target.call("take_damage", damage)
+				_show_hit_impact(collision.get_position())
 		queue_free()
 		return
 
 	_distance_travelled += frame_distance
 	if _distance_travelled >= max_distance:
 		queue_free()
+
+func _show_hit_impact(hit_position: Vector2) -> void:
+	var current_scene := get_tree().current_scene
+	if not current_scene:
+		return
+	var impact := HIT_IMPACT_SCENE.instantiate() as Node2D
+	current_scene.add_child(impact)
+	impact.global_position = hit_position
