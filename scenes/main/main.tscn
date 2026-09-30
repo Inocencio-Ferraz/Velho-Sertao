@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3]
+[gd_scene load_steps=45 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_base_dry.png" id="36_ground_base"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/ground/trail_earth_overlay.png" id="37_trail_overlay"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_details_overlay.png" id="38_ground_details"]
+[ext_resource type="PackedScene" path="res://scenes/environment/wayfinding_sign.tscn" id="39_wayfinding_sign"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
 size = Vector2(960, 24)
@@ -289,6 +290,15 @@ texture = ExtResource("34_tree_dry_medium")
 [node name="DryTreeMedium02" type="Sprite2D" parent="EnvironmentDecoration"]
 position = Vector2(800, 1980)
 texture = ExtResource("34_tree_dry_medium")
+
+[node name="VillageDirectionSign" parent="EnvironmentDecoration" instance=ExtResource("39_wayfinding_sign")]
+position = Vector2(590, 650)
+
+[node name="SecondWellDirectionSign" parent="EnvironmentDecoration" instance=ExtResource("39_wayfinding_sign")]
+position = Vector2(630, 1280)
+
+[node name="ThirdWellDirectionSign" parent="EnvironmentDecoration" instance=ExtResource("39_wayfinding_sign")]
+position = Vector2(640, 1850)
 
 [node name="CasaJoaoGrilo" parent="." instance=ExtResource("18_joao_house")]
 position = Vector2(300, 460)
