@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3]
+[gd_scene load_steps=44 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_hud.tscn" id="2_hud"]
@@ -35,6 +35,9 @@
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_small.png" id="33_tree_dry_small"]
 [ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/tree_dry_medium.png" id="34_tree_dry_medium"]
 [ext_resource type="PackedScene" path="res://scenes/audio/audio_manager.tscn" id="35_audio_manager"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_base_dry.png" id="36_ground_base"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/trail_earth_overlay.png" id="37_trail_overlay"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_details_overlay.png" id="38_ground_details"]
 
 [sub_resource type="RectangleShape2D" id="Shape_wall_top"]
 size = Vector2(960, 24)
@@ -54,25 +57,60 @@ size = Vector2(36, 52)
 [node name="StoryProgress" type="Node" parent="."]
 script = ExtResource("12_story_progress")
 
-[node name="Ground" type="Polygon2D" parent="."]
-color = Color(0.49, 0.38, 0.24, 1)
-polygon = PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2000, -2000, 2000)
+[node name="Ground" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+z_index = -100
+
+[node name="GroundBaseTexture" type="TextureRect" parent="Ground"]
+offset_right = 9600.0
+offset_bottom = 30000.0
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("36_ground_base")
+stretch_mode = 1
+mouse_filter = 2
+
+[node name="GroundDetailsTexture" type="TextureRect" parent="Ground"]
+offset_right = 9600.0
+offset_bottom = 30000.0
+modulate = Color(1, 1, 1, 0.38)
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("38_ground_details")
+stretch_mode = 1
+mouse_filter = 2
 
 [node name="SandyTrail" type="Polygon2D" parent="."]
-color = Color(0.56, 0.44, 0.29, 1)
+color = Color(1, 1, 1, 1)
 polygon = PackedVector2Array(360, 730, 400, 800, 380, 880, 415, 960, 390, 1050, 425, 1140, 390, 1230, 420, 1320, 385, 1410, 410, 1500, 375, 1590, 405, 1680, 385, 1780, 410, 1870, 555, 1870, 540, 1780, 565, 1680, 540, 1590, 565, 1500, 535, 1410, 560, 1320, 535, 1230, 565, 1140, 535, 1050, 565, 960, 535, 880, 560, 800, 520, 730)
+texture = ExtResource("37_trail_overlay")
+texture_filter = 1
+texture_repeat = 1
+uv = PackedVector2Array(5.8214, 0.5, 6.3796, 0.5, 7.0175, 0.5, 7.6555, 0.5, 8.3732, 0.5, 9.0909, 0.5, 9.8086, 0.5, 10.5263, 0.5, 11.244, 0.5, 11.9617, 0.5, 12.6794, 0.5, 13.3971, 0.5, 14.1946, 0.5, 14.9123, 0.5, 14.9123, 0.5, 14.1946, 0.5, 13.3971, 0.5, 12.6794, 0.5, 11.9617, 0.5, 11.244, 0.5, 10.5263, 0.5, 9.8086, 0.5, 9.0909, 0.5, 8.3732, 0.5, 7.6555, 0.5, 7.0175, 0.5, 6.3796, 0.5, 5.8214, 0.5)
 
 [node name="SandyTrailToChurch" type="Polygon2D" parent="."]
-color = Color(0.56, 0.44, 0.29, 1)
+color = Color(1, 1, 1, 1)
 polygon = PackedVector2Array(400, 430, 430, 470, 450, 510, 430, 560, 400, 610, 375, 670, 360, 730, 520, 730, 545, 670, 570, 610, 600, 560, 610, 510, 590, 470, 560, 430)
+texture = ExtResource("37_trail_overlay")
+texture_filter = 1
+texture_repeat = 1
+uv = PackedVector2Array(3.429, 0.5, 3.748, 0.5, 4.067, 0.5, 4.4657, 0.5, 4.8644, 0.5, 5.3429, 0.5, 5.8214, 0.5, 5.8214, 0.5, 5.3429, 0.5, 4.8644, 0.5, 4.4657, 0.5, 4.067, 0.5, 3.748, 0.5, 3.429, 0.5)
 
 [node name="SandyTrailVillage" type="Polygon2D" parent="."]
-color = Color(0.56, 0.44, 0.29, 1)
+color = Color(1, 1, 1, 1)
 polygon = PackedVector2Array(240, 485, 285, 455, 335, 440, 385, 438, 430, 450, 465, 475, 500, 500, 495, 540, 460, 525, 420, 505, 375, 495, 330, 505, 280, 530, 230, 535)
+texture = ExtResource("37_trail_overlay")
+texture_filter = 1
+texture_repeat = 1
+uv = PackedVector2Array(1.9139, 0.5, 2.2727, 0.5, 2.6715, 0.5, 3.0702, 0.5, 3.429, 0.5, 3.7081, 0.5, 3.9872, 0.5, 3.9474, 0.5, 3.6683, 0.5, 3.3493, 0.5, 2.9904, 0.5, 2.6316, 0.5, 2.2329, 0.5, 1.8341, 0.5)
 
 [node name="SandyTrailFinal" type="Polygon2D" parent="."]
-color = Color(0.56, 0.44, 0.29, 1)
+color = Color(1, 1, 1, 1)
 polygon = PackedVector2Array(410, 1870, 390, 1950, 420, 2030, 390, 2110, 425, 2190, 395, 2270, 430, 2350, 405, 2430, 430, 2510, 555, 2510, 535, 2430, 560, 2350, 535, 2270, 565, 2190, 535, 2110, 565, 2030, 535, 1950, 555, 1870)
+texture = ExtResource("37_trail_overlay")
+texture_filter = 1
+texture_repeat = 1
+uv = PackedVector2Array(14.9123, 0.5, 15.5502, 0.5, 16.1882, 0.5, 16.8262, 0.5, 17.4641, 0.5, 18.1021, 0.5, 18.74, 0.5, 19.378, 0.5, 20.0159, 0.5, 20.0159, 0.5, 19.378, 0.5, 18.74, 0.5, 18.1021, 0.5, 17.4641, 0.5, 16.8262, 0.5, 16.1882, 0.5, 15.5502, 0.5, 14.9123, 0.5)
 
 [node name="EnvironmentDecoration" type="Node2D" parent="."]
 

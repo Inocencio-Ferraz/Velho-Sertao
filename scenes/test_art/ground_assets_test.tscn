@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_base_dry.png" id="1_ground"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/trail_earth_overlay.png" id="2_trail"]
+[ext_resource type="Texture2D" path="res://assets/art/environment/ground/ground_details_overlay.png" id="3_details"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/joao_grilo.png" id="4_joao"]
+
+[node name="GroundAssetsTest" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.32, 0.25, 0.18, 1)
+polygon = PackedVector2Array(0, 0, 640, 0, 640, 360, 0, 360)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 632.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
+text = "TERRENO DO SERTÃO — ESTUDO VISUAL"
+horizontal_alignment = 1
+
+[node name="BaseSample" type="Sprite2D" parent="."]
+position = Vector2(120, 174)
+scale = Vector2(0.12, 0.12)
+texture_filter = 1
+texture = ExtResource("1_ground")
+
+[node name="PathBase" type="Sprite2D" parent="."]
+position = Vector2(320, 174)
+scale = Vector2(0.12, 0.12)
+texture_filter = 1
+texture = ExtResource("1_ground")
+
+[node name="PathOverlay" type="Sprite2D" parent="."]
+position = Vector2(320, 174)
+z_index = 1
+scale = Vector2(0.12, 0.12)
+texture_filter = 1
+texture = ExtResource("2_trail")
+
+[node name="JoaoScaleMarker" type="Sprite2D" parent="."]
+position = Vector2(320, 224)
+z_index = 2
+texture_filter = 1
+texture = ExtResource("4_joao")
+centered = true
+
+[node name="DetailsBase" type="Sprite2D" parent="."]
+position = Vector2(520, 174)
+scale = Vector2(0.12, 0.12)
+texture_filter = 1
+texture = ExtResource("1_ground")
+
+[node name="DetailsOverlay" type="Sprite2D" parent="."]
+position = Vector2(520, 174)
+z_index = 1
+scale = Vector2(0.12, 0.12)
+texture_filter = 1
+texture = ExtResource("3_details")
+
+[node name="BaseLabel" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 264.0
+offset_right = 220.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "CHÃO BASE"
+horizontal_alignment = 1
+
+[node name="PathLabel" type="Label" parent="."]
+offset_left = 220.0
+offset_top = 264.0
+offset_right = 420.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "CAMINHO + TRANSIÇÃO"
+horizontal_alignment = 1
+
+[node name="DetailsLabel" type="Label" parent="."]
+offset_left = 420.0
+offset_top = 264.0
+offset_right = 620.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 11
+text = "DETALHES SOBRE O SOLO"
+horizontal_alignment = 1
+
+[node name="ScaleNote" type="Label" parent="."]
+offset_left = 220.0
+offset_top = 286.0
+offset_right = 420.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0.98, 0.9, 0.74, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.11, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 9
+text = "João: 24 × 28 px"
+horizontal_alignment = 1

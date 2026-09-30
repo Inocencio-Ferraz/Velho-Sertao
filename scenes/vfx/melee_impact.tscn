@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/vfx/melee_impact.gd" id="1_script"]
+
+[node name="MeleeImpact" type="Node2D"]
+z_index = 10
+script = ExtResource("1_script")
+
+[node name="Flash" type="Polygon2D" parent="."]
+color = Color(1, 0.78, 0.36, 1)
+polygon = PackedVector2Array(0, -8, 2, -4, 6, -6, 4, -2, 8, 0, 4, 2, 6, 6, 2, 4, 0, 8, -2, 4, -6, 6, -4, 2, -8, 0, -4, -2, -6, -6, -2, -4)
+
+[node name="Core" type="Polygon2D" parent="."]
+color = Color(1, 0.96, 0.72, 1)
+polygon = PackedVector2Array(0, -3, 2, 0, 0, 3, -2, 0)
