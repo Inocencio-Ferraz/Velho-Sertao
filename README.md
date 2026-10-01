@@ -38,7 +38,7 @@ Desenvolvido para a GameJam do X SEMITI, no IFPB Campus Monteiro, o jogo acompan
     </td>
     <td align="center">
       <a href="https://github.com/Clebio-Luis">
-        <img src="https://github.com/Clebio-Luis.png?size=200" width="96" height="96" alt="Avatar de Clebio-Luis"><br>
+        <img src="https://github.com/Clebio-Luis.png? width="96" height="96" alt="Avatar de Clebio-Luis"><br>
         <strong>Clebio-Luis</strong>
       </a>
     </td>
