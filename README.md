@@ -71,3 +71,7 @@ Desenvolvido para a GameJam do X SEMITI, no IFPB Campus Monteiro, o jogo acompan
 ## Créditos
 
 As fontes e licenças dos assets de áudio estão registradas em [CREDITS.md](CREDITS.md).
+
+## Download
+
+[🎮 Baixar O Sonho de Sousa para Windows](https://github.com/Inocencio-Ferraz/Velho-Sertao/releases/latest/download/OSonhoDeSousaVersaoFinal.zip)
