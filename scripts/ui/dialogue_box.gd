@@ -4,6 +4,8 @@ signal dialogue_completed(speaker: String)
 
 @export var player_path: NodePath
 @export var interaction_prompt_path: NodePath
+@export var opening_speaker: String = ""
+@export var opening_lines: PackedStringArray = PackedStringArray()
 
 @onready var panel: Control = $DialoguePanel
 @onready var speaker_label: Label = $DialoguePanel/MarginContainer/VBoxContainer/SpeakerLabel
@@ -18,6 +20,11 @@ var _line_index: int = 0
 
 func _ready() -> void:
 	panel.visible = false
+	if not opening_lines.is_empty():
+		call_deferred("_start_opening_sequence")
+
+func _start_opening_sequence() -> void:
+	start_dialogue(opening_speaker, opening_lines)
 
 func start_dialogue(speaker: String, lines: PackedStringArray) -> void:
 	if is_open or lines.is_empty():

@@ -18,6 +18,8 @@ signal defeated(enemy: Node)
 @export var starting_ammo: int = 0
 @export var ranged_attack_range: float = 180.0
 @export var ranged_attack_cooldown: float = 3.0
+@export var starts_dormant: bool = false
+@export var starting_facing_direction: Vector2 = Vector2.LEFT
 
 @onready var body_shape: CollisionShape2D = $CollisionShape2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -32,7 +34,7 @@ signal defeated(enemy: Node)
 @onready var direction_marker: Polygon2D = $DirectionMarker
 @onready var muzzle_flash := get_node_or_null("MuzzleFlash") as Polygon2D
 
-enum State { IDLE, CHASE, ATTACK, DEAD }
+enum State { IDLE, CHASE, ATTACK, DEAD, DORMANT }
 
 var health: int = 30
 var is_dead: bool = false
@@ -52,6 +54,10 @@ var _ammo_reward_paid: bool = false
 func _ready() -> void:
 	max_health = maxi(1, max_health)
 	health = max_health
+	if starts_dormant:
+		_state = State.DORMANT
+	if starting_facing_direction != Vector2.ZERO:
+		_facing_direction = starting_facing_direction.normalized()
 	_base_visual_modulate = visual.modulate
 	if melee_sprite:
 		melee_sprite.visible = not has_pistol
@@ -83,6 +89,9 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	match _state:
+		State.DORMANT:
+			velocity = Vector2.ZERO
+			move_and_slide()
 		State.IDLE:
 			velocity = Vector2.ZERO
 			move_and_slide()
@@ -101,6 +110,20 @@ func set_dialogue_locked(locked: bool) -> void:
 		attack_visual.visible = false
 		attack_shape.set_deferred("disabled", true)
 
+func activate_encounter(target_player: CharacterBody2D) -> void:
+	if is_dead or not starts_dormant or not is_instance_valid(target_player):
+		return
+
+	starts_dormant = false
+	# Account for the Player collider so a body already overlapping the area at
+	# activation is assigned immediately instead of waiting for a new enter event.
+	if global_position.distance_to(target_player.global_position) <= detection_range + 10.0:
+		_target_player = target_player
+		_state = State.CHASE
+		_face_player(target_player.global_position - global_position)
+	else:
+		_state = State.IDLE
+
 func take_damage(amount: int) -> void:
 	if is_dead or amount <= 0:
 		return
@@ -115,7 +138,7 @@ func take_damage(amount: int) -> void:
 		_play_audio("impact")
 
 func _on_detection_body_entered(body: Node2D) -> void:
-	if is_dead or body == self or not body.has_method("take_damage"):
+	if is_dead or starts_dormant or body == self or not body.has_method("take_damage"):
 		return
 	if body is CharacterBody2D:
 		_target_player = body as CharacterBody2D

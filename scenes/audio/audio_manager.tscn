@@ -38,3 +38,7 @@ process_mode = 3
 stream = ExtResource("7_water")
 volume_db = -1.9
 process_mode = 3
+
+[node name="DinosaurRoarPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 0.5
+process_mode = 3

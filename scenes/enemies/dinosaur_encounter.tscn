@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/dinosaur_encounter.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="TriggerShape"]
+radius = 240.0
+
+[node name="DinosaurEncounter" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_script")
+camera_path = NodePath("../Player/Camera2D")
+initial_pause = 0.18
+shake_duration = 2.0
+shake_strength = 7.5
+roar_pause = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("TriggerShape")

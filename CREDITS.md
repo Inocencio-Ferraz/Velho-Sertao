@@ -64,6 +64,16 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Crédito:** não há aviso adicional de atribuição na página; crédito incluído como registro de procedência.
 - **Uso no jogo:** efeito de água ao encontrar o terceiro poço.
 
+### `assets/audio/sfx/sfx_dinosaur_roar_01.ogg`
+
+- **Asset original:** *DINOSAUR ROAR*.
+- **Autor:** Podcapocalipsis.
+- **Origem:** [Freesound — DINOSAUR ROAR](https://freesound.org/people/Podcapocalipsis/sounds/578601/)
+- **Licença:** CC0, conforme a página do asset.
+- **Crédito:** atribuição não exigida; crédito incluído como registro de procedência.
+- **Edição:** trecho curto extraído da prévia oficial, com ajuste de nível e conversão para OGG.
+- **Uso no jogo:** rugido de abertura do encontro com os dinossauros.
+
 ## Observações
 
 - Foram copiados somente os arquivos individuais listados acima; os pacotes completos de origem não fazem parte do projeto.

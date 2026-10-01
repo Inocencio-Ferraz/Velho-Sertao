@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/combat/machete_attack.gd" id="2_attack"]
 [ext_resource type="Script" path="res://scripts/combat/pistol.gd" id="3_pistol"]
 [ext_resource type="Texture2D" path="res://assets/art/characters/joao_grilo.png" id="4_joao"]
+[ext_resource type="Script" path="res://scripts/systems/camera_shake.gd" id="5_camera_shake"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 10.0
@@ -57,3 +58,4 @@ limit_left = 0
 limit_top = 0
 limit_right = 960
 limit_bottom = 3000
+script = ExtResource("5_camera_shake")

@@ -1,15 +1,11 @@
-[gd_scene load_steps=1 format=3]
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/art/environment/vegetation/cactus_mandacaru_small.png" id="1_cactus"]
 
 [node name="CactusDecoration" type="Node2D"]
 
-[node name="Trunk" type="Polygon2D" parent="."]
-color = Color(0.25, 0.46, 0.23, 1)
-polygon = PackedVector2Array(-4, -18, 4, -18, 4, 10, 8, 13, -8, 13, -4, 10)
-
-[node name="LeftArm" type="Polygon2D" parent="."]
-color = Color(0.3, 0.51, 0.25, 1)
-polygon = PackedVector2Array(-4, -5, -8, -5, -8, -11, -11, -11, -11, 1, -4, 1)
-
-[node name="RightArm" type="Polygon2D" parent="."]
-color = Color(0.32, 0.52, 0.26, 1)
-polygon = PackedVector2Array(4, 0, 8, 0, 8, -7, 11, -7, 11, 6, 4, 6)
+[node name="CactusSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_cactus")
+texture_filter = 1
