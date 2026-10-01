@@ -57,8 +57,9 @@ Desenvolvido para a GameJam do X SEMITI, no IFPB Campus Monteiro, o jogo acompan
 
 ## Executar
 
-1. Abra `project.godot` no Godot 4.7.2.
-2. Pressione F5 para executar o jogo a partir da cena principal.
+1. Faça o donwload do arquivo zip ao final desse readme.
+2. Extrair o arquivo.
+3. Executar o arquivo .exe.
 
 ## Controles
 
