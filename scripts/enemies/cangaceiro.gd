@@ -208,6 +208,7 @@ func _fire_ranged_shot() -> void:
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = global_position + shot_direction * 13.0
 	bullet.call("launch", shot_direction, 1, 1, 500.0)
+	_play_audio("pistol")
 	_show_muzzle_flash(shot_direction)
 
 	var cooldown := maxf(3.0, ranged_attack_cooldown)

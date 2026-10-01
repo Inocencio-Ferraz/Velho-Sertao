@@ -29,6 +29,9 @@ func _fire() -> void:
 	_can_fire = false
 	ammo -= 1
 	ammo_changed.emit(ammo)
+	var audio_manager := get_tree().get_first_node_in_group("game_audio")
+	if audio_manager:
+		audio_manager.call("play_sfx", "pistol")
 	_shoot_in_facing_direction(player)
 	get_tree().create_timer(cooldown).timeout.connect(_on_cooldown_finished)
 

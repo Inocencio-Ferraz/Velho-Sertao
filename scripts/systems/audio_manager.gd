@@ -11,6 +11,7 @@ const DINOSAUR_ROAR_PATH: String = "res://assets/audio/sfx/sfx_dinosaur_roar_01.
 @onready var enemy_death_player: AudioStreamPlayer = $EnemyDeathPlayer
 @onready var water_player: AudioStreamPlayer = $WaterPlayer
 @onready var dinosaur_roar_player: AudioStreamPlayer = $DinosaurRoarPlayer
+@onready var pistol_player: AudioStreamPlayer = $PistolPlayer
 
 var _sfx_players: Dictionary = {}
 
@@ -25,7 +26,8 @@ func _ready() -> void:
 		"impact": impact_player,
 		"enemy_death": enemy_death_player,
 		"water": water_player,
-		"dinosaur_roar": dinosaur_roar_player
+		"dinosaur_roar": dinosaur_roar_player,
+		"pistol": pistol_player
 	}
 	if ResourceLoader.exists(DINOSAUR_ROAR_PATH):
 		dinosaur_roar_player.stream = load(DINOSAUR_ROAR_PATH) as AudioStream
@@ -54,5 +56,5 @@ func play_dinosaur_roar() -> float:
 	return dinosaur_roar_player.stream.get_length()
 
 func set_game_paused(paused: bool) -> void:
-	for player in [music_player, ambience_player, machete_player, impact_player, enemy_death_player, water_player, dinosaur_roar_player]:
+	for player in [music_player, ambience_player, machete_player, impact_player, enemy_death_player, water_player, dinosaur_roar_player, pistol_player]:
 		player.stream_paused = paused

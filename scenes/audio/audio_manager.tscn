@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/systems/audio_manager.gd" id="1_script"]
 [ext_resource type="AudioStream" path="res://assets/audio/music/music_desert_settlement.mp3" id="2_music"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_impact_01.ogg" id="5_impact"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_enemy_death_01.ogg" id="6_enemy_death"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_water_splash_01.ogg" id="7_water"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sfx_pistol_shot_01.ogg" id="8_pistol"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_script")
@@ -41,4 +42,9 @@ process_mode = 3
 
 [node name="DinosaurRoarPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = 0.5
+process_mode = 3
+
+[node name="PistolPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_pistol")
+volume_db = -1.9
 process_mode = 3

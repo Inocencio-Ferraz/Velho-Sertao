@@ -74,8 +74,17 @@ As páginas de origem identificam as licenças abaixo como **CC0**. Os avisos de
 - **Edição:** trecho curto extraído da prévia oficial, com ajuste de nível e conversão para OGG.
 - **Uso no jogo:** rugido de abertura do encontro com os dinossauros.
 
+### `assets/audio/sfx/sfx_pistol_shot_01.ogg`
+
+- **Asset original:** *Gunfire single shot, Colt Peacemaker*.
+- **Autor:** johnyridgeback.
+- **Origem:** [Freesound — Gunfire single shot, Colt Peacemaker](https://freesound.org/people/johnyridgeback/sounds/567272/)
+- **Licença:** CC0, conforme a página do asset.
+- **Crédito:** atribuição não exigida; crédito incluído como registro de procedência.
+- **Edição:** trecho do disparo e sua cauda curta, extraído da prévia oficial, com redução de pico e conversão para OGG.
+- **Uso no jogo:** som de cada disparo válido da pistola do jogador.
+
 ## Observações
 
 - Foram copiados somente os arquivos individuais listados acima; os pacotes completos de origem não fazem parte do projeto.
 - Os efeitos sonoros são assets provisórios usados nos eventos indicados acima.
-- Nenhum efeito de disparo foi incluído nesta seleção: a opção encontrada estava identificada como gravação de uma pistola CZ-52, inadequada como referência histórica direta para a ambientação de 1910–1920.
